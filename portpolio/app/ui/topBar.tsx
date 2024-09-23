@@ -7,7 +7,7 @@ export const TopBar = ({ setColor }: { setColor: (text: string) => void }) => {
   const [showNum, setShowNum] = useState<number>();
   console.log(showNum);
   return (
-    <div className="flex justify-center h-8 sticky">
+    <div className="flex justify-center h-8 sticky top-0 left-0 bg-background">
       <div className="flex">
         <ColorBox
           setColor={() => setColor("yellow")}
@@ -64,7 +64,9 @@ export const ColorBox = ({
   return (
     <div className="relative h-4 w-4">
       <div
-        className={"h-4 w-4 flex justify-center items-center " + outer}
+        className={
+          "h-4 w-4 flex justify-center items-center cursor-pointer " + outer
+        }
         onClick={setColor}
         onMouseEnter={setShowNum}
         onMouseLeave={closeBox}
