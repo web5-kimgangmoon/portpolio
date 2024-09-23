@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.body.yellow {
+  /* :root { */
+  --background: rgb(253, 224, 71);
+  --color: black;
+  --color60: rgba(0, 0, 0, 0.6);
+  --color50: rgba(0, 0, 0, 0.5);
+  /* } */
+}
+.body.black {
+  /* :root { */
+  --background: black;
+  --color: white;
+  --color60: rgba(255, 255, 255, 0.6);
+  --color50: rgba(255, 255, 255, 0.5);
+  /* } */
+}
+.body.pink {
+  /* :root { */
+  --background: rgb(249, 168, 212);
+  --color: black;
+  --color60: rgba(0, 0, 0, 0.6);
+  --color50: rgba(0, 0, 0, 0.5);
+  /* } */
+}
+.body.blue {
+  /* :root { */
+  --background: rgb(147, 197, 253);
+  --color: black;
+  --color60: rgba(0, 0, 0, 0.6);
+  --color50: rgba(0, 0, 0, 0.5);
+  /* } */
+}
+
+.body {
+  color: var(--color);
+  background: var(--background);
+}
