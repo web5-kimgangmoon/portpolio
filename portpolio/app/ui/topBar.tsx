@@ -3,11 +3,16 @@
 import { useState } from "react";
 import { LittleBox } from "./littleBox";
 
-export const TopBar = ({ setColor }: { setColor: (text: string) => void }) => {
+export const TopBar = ({
+  setColor,
+  setIsNavOpen,
+}: {
+  setColor: (text: string) => void;
+  setIsNavOpen: () => void;
+}) => {
   const [showNum, setShowNum] = useState<number>();
-  console.log(showNum);
   return (
-    <div className="flex justify-center h-8 sticky top-0 left-0 bg-background">
+    <div className="sticky flex w-full justify-center h-[30px] top-0 left-0 bg-background ">
       <div className="flex">
         <ColorBox
           setColor={() => setColor("yellow")}
@@ -41,6 +46,12 @@ export const TopBar = ({ setColor }: { setColor: (text: string) => void }) => {
           outer="bg-blue-300"
           setShowNum={() => setShowNum(4)}
         />
+      </div>
+      <div
+        className="top-[5px] right-[5px] fixed xl:hidden"
+        onClick={setIsNavOpen}
+      >
+        ㅇㅇ
       </div>
     </div>
   );

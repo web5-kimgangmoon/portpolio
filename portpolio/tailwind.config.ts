@@ -17,6 +17,9 @@ const config: Config = {
         color20: "var(--color20)",
         yellow: { "300": "#ffdb67" },
       },
+      container: {
+        center: true,
+      },
     },
   },
   plugins: [],
