@@ -1,11 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { TopBar } from "./ui/topBar";
 import { RightMenu } from "./ui/rightMenu";
 
 export default function Home() {
   const [color, setColor] = useState<string>("yellow");
+
+  const section1 = useRef(null);
 
   return (
     <div className={`body ${color}`}>
