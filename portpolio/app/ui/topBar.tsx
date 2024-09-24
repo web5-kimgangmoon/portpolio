@@ -2,12 +2,18 @@
 
 import { useState } from "react";
 import { LittleBox } from "./littleBox";
+import { Bars3Icon } from "@heroicons/react/24/outline";
 
-export const TopBar = ({ setColor }: { setColor: (text: string) => void }) => {
+export const TopBar = ({
+  setColor,
+  setIsNavOpen,
+}: {
+  setColor: (text: string) => void;
+  setIsNavOpen: () => void;
+}) => {
   const [showNum, setShowNum] = useState<number>();
-  console.log(showNum);
   return (
-    <div className="flex justify-center h-8 sticky">
+    <div className="fixed flex w-full justify-center h-[30px] bg-background ">
       <div className="flex">
         <ColorBox
           setColor={() => setColor("yellow")}
@@ -42,6 +48,12 @@ export const TopBar = ({ setColor }: { setColor: (text: string) => void }) => {
           setShowNum={() => setShowNum(4)}
         />
       </div>
+      <div
+        className="top-[5px] right-[5px] fixed xl:hidden w-[20px] h-[20px]"
+        onClick={setIsNavOpen}
+      >
+        <Bars3Icon className="w-full h-full" />
+      </div>
     </div>
   );
 };
@@ -64,7 +76,9 @@ export const ColorBox = ({
   return (
     <div className="relative h-4 w-4">
       <div
-        className={"h-4 w-4 flex justify-center items-center " + outer}
+        className={
+          "h-4 w-4 flex justify-center items-center cursor-pointer " + outer
+        }
         onClick={setColor}
         onMouseEnter={setShowNum}
         onMouseLeave={closeBox}

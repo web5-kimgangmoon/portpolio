@@ -1,7 +1,7 @@
 export const LittleBox = ({ isShown }: { isShown: boolean }) => {
   return (
     <div
-      className={`absolute bottom-[-2rem] transition left-[-2.275rem] ${
+      className={`absolute bottom-[-2rem] transition left-[-2.375rem] ${
         isShown ? "opacity-1" : "opacity-0 z-[-1]"
       }`}
       onMouseEnter={(e) => e.preventDefault()}
