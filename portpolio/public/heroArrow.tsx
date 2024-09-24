@@ -3,16 +3,16 @@ export const HeroArrow = ({ className = "" }: { className?: string }) => (
     className={className}
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth="1.5"
+    viewBox="0 0 24 8"
+    strokeWidth="0.6"
     stroke="currentColor"
     aria-hidden="true"
     data-slot="icon"
   >
     <path
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      d="m11.99 16.5 3.75 3.75m0 0 3.75-3.75m-3.75 3.75V3.75H4.49"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="m15.99 4.5 1.75 1.75m0 0 1.75-1.75m-1.75 1.75V1.75H4.49"
     ></path>
   </svg>
 );

@@ -12,6 +12,7 @@ const config: Config = {
         text: "var(--color)",
         background: "var(--background)",
         foreground: "var(--foreground)",
+        color75: "var(--color75)",
         color60: "var(--color60)",
         color50: "var(--color50)",
         color20: "var(--color20)",

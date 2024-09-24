@@ -10,6 +10,7 @@
   /* :root { */
   --background: #ffdb67;
   --color: black;
+  --color75: rgba(0, 0, 0, 0.75);
   --color60: rgba(0, 0, 0, 0.6);
   --color50: rgba(0, 0, 0, 0.5);
   --color20: rgba(0, 0, 0, 0.2);
@@ -19,6 +20,7 @@
   /* :root { */
   --background: black;
   --color: white;
+  --color75: rgba(255, 255, 255, 0.75);
   --color60: rgba(255, 255, 255, 0.6);
   --color50: rgba(255, 255, 255, 0.5);
   --color20: rgba(255, 255, 255, 0.2);
@@ -28,6 +30,7 @@
   /* :root { */
   --background: rgb(249, 168, 212);
   --color: black;
+  --color75: rgba(0, 0, 0, 0.75);
   --color60: rgba(0, 0, 0, 0.6);
   --color50: rgba(0, 0, 0, 0.5);
   --color20: rgba(0, 0, 0, 0.2);
@@ -37,6 +40,7 @@
   /* :root { */
   --background: rgb(147, 197, 253);
   --color: black;
+  --color75: rgba(0, 0, 0, 0.75);
   --color60: rgba(0, 0, 0, 0.6);
   --color50: rgba(0, 0, 0, 0.5);
   --color20: rgba(0, 0, 0, 0.2);
@@ -69,7 +73,7 @@
     transform: translateY(0);
   }
   50% {
-    transform: translateY(100%);
+    transform: translateY(50%);
   }
   100% {
     transform: translateY(0);
@@ -99,6 +103,14 @@
     width: 0;
   }
 }
+@keyframes strechLength {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
 
 .rightMoveAnime {
   animation-name: rightMove;
@@ -110,11 +122,18 @@
   animation-name: rightMoveCustom;
 }
 
+.strechAnime {
+  animation-name: strechLength;
+  animation-timing-function: cubic-bezier(0.39, 0.575, 0.565, 1);
+  animation-fill-mode: forwards;
+  animation-delay: 300ms;
+  animation-duration: 300ms;
+}
 .reduceAnime {
   animation-name: reduceLength;
   animation-timing-function: cubic-bezier(0.39, 0.575, 0.565, 1);
   animation-fill-mode: forwards;
-  animation-delay: 1300ms;
+  animation-delay: 300ms;
   animation-duration: 300ms;
 }
 .reduceAnime_another {
@@ -125,10 +144,10 @@
   animation-duration: 300ms;
 }
 
-.bounceIcon:hover {
+.bounceIcon:hover .target {
   animation-name: bounce;
   animation-timing-function: cubic-bezier(0.39, 0.575, 0.565, 1);
-  animation-duration: 300ms;
+  animation-duration: 400ms;
   animation-iteration-count: 2;
 }
 
@@ -160,7 +179,10 @@
 
 .parent .slideItem,
 .parent .slideItem:nth-child(n),
-.parent .slideItem:last-child {
+.parent .slideItem:last-child,
+.parent .rightMoveAnime,
+.parent .reduceAnime,
+.parent .strechAnime {
   animation-play-state: paused;
 }
 

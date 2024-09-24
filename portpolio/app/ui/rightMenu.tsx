@@ -42,11 +42,17 @@ export const RightMenuComp = ({
 }) => {
   const all = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    setSelect(selectIndex(window.scrollY, window.innerHeight));
+    let sum = 0;
+    const refsNum: number[] = [];
+    for (let item of refs) {
+      refsNum.push((item.current!.clientHeight + sum) as number);
+      sum += item.current!.clientHeight;
+    }
+    setSelect(selectIndex(window.scrollY, refsNum));
     scrollEvControll(true);
     if (all.current) all.current.classList.remove("parent");
     window.onscroll = () => {
-      setSelect(selectIndex(window.scrollY, window.innerHeight));
+      setSelect(selectIndex(window.scrollY, refsNum));
     };
     scrollEvControll(false);
   }, []);
