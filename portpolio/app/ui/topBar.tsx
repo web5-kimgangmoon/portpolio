@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { LittleBox } from "./littleBox";
+import { Bars3Icon } from "@heroicons/react/24/outline";
 
 export const TopBar = ({
   setColor,
@@ -12,7 +13,7 @@ export const TopBar = ({
 }) => {
   const [showNum, setShowNum] = useState<number>();
   return (
-    <div className="sticky flex w-full justify-center h-[30px] top-0 left-0 bg-background ">
+    <div className="fixed flex w-full justify-center h-[30px] bg-background ">
       <div className="flex">
         <ColorBox
           setColor={() => setColor("yellow")}
@@ -48,10 +49,10 @@ export const TopBar = ({
         />
       </div>
       <div
-        className="top-[5px] right-[5px] fixed xl:hidden"
+        className="top-[5px] right-[5px] fixed xl:hidden w-[20px] h-[20px]"
         onClick={setIsNavOpen}
       >
-        ㅇㅇ
+        <Bars3Icon className="w-full h-full" />
       </div>
     </div>
   );
