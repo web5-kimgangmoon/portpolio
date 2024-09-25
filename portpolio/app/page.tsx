@@ -9,6 +9,7 @@ import { ArrowTurnRightDownIcon } from "@heroicons/react/24/outline";
 import { HeroArrow } from "@/public/heroArrow";
 import { selectIndex } from "./lib/selectIndex";
 import { throttle } from "@/app/lib/throttle";
+import Link from "next/link";
 
 export default function Home() {
   const [color, setColor] = useState<string>("yellow");
@@ -82,27 +83,75 @@ export default function Home() {
               indexStr="03/05"
             >
               <div className="text-xl rightMoveAnime flex flex-wrap">
-                <div className="min-w-[100%] xl:min-w-[50%]">figma</div>
-                <div className="min-w-[100%] xl:min-w-[50%]">react</div>
-                <div className="min-w-[100%] xl:min-w-[50%]">tailwind</div>
-                <div className="min-w-[100%] xl:min-w-[50%]">npm</div>
-                <div className="min-w-[100%] xl:min-w-[50%]">mysql</div>
+                <Skill
+                  title="figma"
+                  description="실제 html 구조처럼 프레임을 활용해 레이아웃을 구성해봤습니다."
+                />
+                <Skill
+                  title="react"
+                  description="useMemo, useCallback, useState, useContext로 커스텀 훅을 코딩해보고, useEffect를 활용해 componentDidMount와 componenetDidUpdate 주기에 따라 리렌더링 시켜봤습니다."
+                />
+                <Skill
+                  title="tailwind"
+                  description="tailwind의 document에서 검색해보며 커스텀 클래스를 만들어보고 오직 tailwind 클래스만으로 css를 구성해봤습니다."
+                />
+                <Skill
+                  title="npm"
+                  description="express, react, typescript, sequelize 등 다양한 라이브러리와 프레임워크를 설치하고 기능들을 활용해봤습니다."
+                />
+                <Skill
+                  title="mysql"
+                  description="mysql_installation_secure로 초기설정을 해보고, create user “username”@”localhost” identified with mysql_native_password by “password”;로 유저를 만들고 create database db;로 데이터베이스를 만들어 grant all privileges on db.* to username;으로 권한을 부여해봤습니다."
+                />
               </div>
             </Section>
-            <section
-              style={{ paddingBlockStart: "30px", minHeight: "100vh" }}
-              ref={section4}
+            <Section
+              reference={section4}
+              nextRef={section5}
+              isPlayAnime={playAnimeNum === 3}
+              title="EXPERIENCE"
+              indexStr="04/05"
             >
-              <h2>섹션 4</h2>
-              <p>내용 4</p>
-            </section>
-            <section
-              style={{ paddingBlockStart: "30px", minHeight: "100vh" }}
-              ref={section5}
+              <div className="text-xl rightMoveAnime flex flex-wrap"></div>
+            </Section>
+            <Section
+              reference={section5}
+              isPlayAnime={playAnimeNum === 4}
+              title="PROJECT"
+              indexStr="05/05"
             >
-              <h2>섹션 5</h2>
-              <p>내용 5</p>
-            </section>
+              <div className="rightMoveAnime">
+                <div className="hover:translate-y-[-10%] transition-transform max-w-max">
+                  <div className="w-32 h-64">
+                    <Image
+                      src={"/project.png"}
+                      alt="no image"
+                      width={120}
+                      height={120}
+                      className="w-full h-full hover:opacity-100 opacity-50 transition-opacity"
+                    />
+                  </div>
+                  <div className="text-3xl font-bold">The board</div>
+                  <div className="text-xl text-color50">
+                    <Link href={"https://deploy.clashcrash.com"}>게시판</Link>
+                  </div>
+                  <div className="text-xl text-color50">
+                    <Link
+                      href={
+                        "https://github.com/web5-kimgangmoon/nextJS_PersonalProject"
+                      }
+                    >
+                      git
+                    </Link>
+                  </div>
+                  <div className="py-6 text-sm flex gap-2">
+                    FRONTED
+                    <div className="w-3 pt-[0.625rem] before:border-t before:border-text before:w-full before:block"></div>
+                    BACKEND
+                  </div>
+                </div>
+              </div>
+            </Section>
           </div>
         </div>
       </div>
@@ -188,8 +237,8 @@ export const Section = ({
       ref={reference}
     >
       <div className="">
-        <div className="relative w-full py-20">
-          <div className="absolute top-20 left-0 w-full border-b-[1rem] border-color75 py-5 reduceAnime"></div>
+        <div className="relative w-full pb-20">
+          <div className="absolute top-0 left-0 w-full border-b-[1rem] border-color75 py-5 reduceAnime"></div>
           <h1 className="text-[4rem] font-bold">{title}</h1>
         </div>
         {children}
@@ -198,6 +247,34 @@ export const Section = ({
         <NextButton nextRef={nextRef} delay="300ms" indexStr={indexStr} />
       )}
     </section>
+  );
+};
+
+export const Skill = ({
+  title,
+  description,
+}: {
+  title: string;
+  description: string;
+}) => {
+  return (
+    <div className="max-w-[100%] xl:max-w-[50%] overflow-hidden">
+      <div className="pr-10">
+        <div className="pb-6 text-2xl font-bold">{title}</div>
+        <div
+          className={clsx(
+            "strechAnime border-t-2 border-color20 pt-6 relative w-0 translate-x-[-100%] w-full",
+            "strechAnimeB before:border-t-2 before:border-text before:pt-6 before:absolute before:top-[-2px] before:left-0 before:block before:translate-x-[-100%] before:w-full"
+          )}
+        ></div>
+        <div
+          className="pb-8 text-xl rightMoveAnime translate-x-[-100%]"
+          style={{ animationDelay: "1600ms" }}
+        >
+          {description}
+        </div>
+      </div>
+    </div>
   );
 };
 

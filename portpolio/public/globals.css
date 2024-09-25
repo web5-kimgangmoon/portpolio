@@ -6,45 +6,32 @@
   box-sizing: border-box;
 }
 
+.body.blue,
+.body.pink,
 .body.yellow {
-  /* :root { */
-  --background: #ffdb67;
   --color: black;
   --color75: rgba(0, 0, 0, 0.75);
   --color60: rgba(0, 0, 0, 0.6);
   --color50: rgba(0, 0, 0, 0.5);
   --color20: rgba(0, 0, 0, 0.2);
-  /* } */
+}
+
+.body.yellow {
+  --background: #ffdb67;
 }
 .body.black {
-  /* :root { */
   --background: black;
   --color: white;
   --color75: rgba(255, 255, 255, 0.75);
   --color60: rgba(255, 255, 255, 0.6);
   --color50: rgba(255, 255, 255, 0.5);
   --color20: rgba(255, 255, 255, 0.2);
-  /* } */
 }
 .body.pink {
-  /* :root { */
   --background: rgb(249, 168, 212);
-  --color: black;
-  --color75: rgba(0, 0, 0, 0.75);
-  --color60: rgba(0, 0, 0, 0.6);
-  --color50: rgba(0, 0, 0, 0.5);
-  --color20: rgba(0, 0, 0, 0.2);
-  /* } */
 }
 .body.blue {
-  /* :root { */
   --background: rgb(147, 197, 253);
-  --color: black;
-  --color75: rgba(0, 0, 0, 0.75);
-  --color60: rgba(0, 0, 0, 0.6);
-  --color50: rgba(0, 0, 0, 0.5);
-  --color20: rgba(0, 0, 0, 0.2);
-  /* } */
 }
 
 .body {
@@ -79,6 +66,21 @@
     transform: translateY(0);
   }
 }
+/* @keyframes upMove {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-10%);
+  }
+}
+.upMoveAnime:hover {
+  animation-name: upMove;
+  animation-timing-function: cubic-bezier(0.39, 0.575, 0.565, 1);
+  animation-fill-mode: forwards;
+  animation-duration: 300ms;
+} */
+
 @keyframes rightMove {
   0% {
     transform: translateX(-100%);
@@ -105,10 +107,10 @@
 }
 @keyframes strechLength {
   0% {
-    width: 0%;
+    transform: translateX(-100%);
   }
   100% {
-    width: 100%;
+    transform: translateX(0);
   }
 }
 
@@ -122,12 +124,18 @@
   animation-name: rightMoveCustom;
 }
 
-.strechAnime {
+.strechAnime,
+.strechAnimeB::before {
   animation-name: strechLength;
   animation-timing-function: cubic-bezier(0.39, 0.575, 0.565, 1);
   animation-fill-mode: forwards;
-  animation-delay: 300ms;
   animation-duration: 300ms;
+}
+.strechAnime {
+  animation-delay: 1000ms;
+}
+.strechAnimeB::before {
+  animation-delay: 1300ms;
 }
 .reduceAnime {
   animation-name: reduceLength;
@@ -182,7 +190,8 @@
 .parent .slideItem:last-child,
 .parent .rightMoveAnime,
 .parent .reduceAnime,
-.parent .strechAnime {
+.parent .strechAnime,
+.parent .strechAnimeB::before {
   animation-play-state: paused;
 }
 
