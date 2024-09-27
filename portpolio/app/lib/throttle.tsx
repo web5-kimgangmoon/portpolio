@@ -1,11 +1,11 @@
-export const throttle = (fn: (...args: any[]) => void, delay: number) => {
+export const throttle = (fn: () => void, delay: number) => {
   let lastCall = 0;
 
-  return function (...args: any[]) {
+  return function () {
     const now = Date.now();
     if (!(now - lastCall < delay)) {
       lastCall = now;
-      fn(...args);
+      fn();
     }
   };
 };

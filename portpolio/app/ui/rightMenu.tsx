@@ -38,7 +38,7 @@ export const RightMenuComp = ({
   useEffect(() => {
     let sum = 0;
     const refsNum: number[] = [];
-    for (let item of refs) {
+    for (const item of refs) {
       refsNum.push((item.current!.clientHeight + sum) as number);
       sum += item.current!.clientHeight;
     }
