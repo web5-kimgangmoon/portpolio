@@ -13,7 +13,7 @@ export const TopBar = ({
 }) => {
   const [showNum, setShowNum] = useState<number>();
   return (
-    <div className="fixed flex w-full justify-center h-[30px] bg-background ">
+    <div className="fixed flex w-full justify-center h-[30px] bg-background z-10 ">
       <div className="flex">
         <ColorBox
           setColor={() => setColor("yellow")}
