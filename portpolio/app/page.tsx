@@ -82,7 +82,7 @@ export default function Page() {
               nextRef={section3}
               isPlayAnime={playAnimeNum === 1}
               title="ABOUT ME"
-              indexStr="02/06"
+              indexStr="02/05"
             >
               <div className="text-xl rightMoveAnime">
                 국비 교육을 수료하며 js와 typescript, mysql을 학습해보고
@@ -97,7 +97,7 @@ export default function Page() {
               nextRef={section4}
               isPlayAnime={playAnimeNum === 2}
               title="SKILLS"
-              indexStr="03/06"
+              indexStr="03/05"
             >
               <div className="text-xl rightMoveAnime flex flex-wrap">
                 <Skill
@@ -127,7 +127,7 @@ export default function Page() {
               nextRef={section5}
               isPlayAnime={playAnimeNum === 3}
               title="EXPERIENCE"
-              indexStr="04/06"
+              indexStr="04/05"
             >
               <div className={clsx("text-xl lineDownComp relative")}>
                 <div className="top-0 left-0 h-0 absolute lineDownCompBase flex flex-col justify-end items-center">
@@ -161,7 +161,7 @@ export default function Page() {
               // nextRef={section6}
               isPlayAnime={playAnimeNum === 4}
               title="PROJECT"
-              indexStr="05/06"
+              indexStr="05/05"
             >
               <div className="rightMoveAnime">
                 <div className="hover:translate-y-[-10%] transition-transform max-w-max opacity_hover">
@@ -205,7 +205,7 @@ export default function Page() {
               reference={section6}
               isPlayAnime={playAnimeNum === 5}
               title="CONTACT"
-              indexStr="06/06"
+              indexStr="06/05"
             >
               <div className="rightMoveAnime">
                 <div>
