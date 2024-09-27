@@ -23,7 +23,7 @@ export default function Home() {
   const section3 = useRef<HTMLElement>(null);
   const section4 = useRef<HTMLElement>(null);
   const section5 = useRef<HTMLElement>(null);
-  const section6 = useRef<HTMLElement>(null);
+  // const section6 = useRef<HTMLElement>(null);
 
   const [isSend, setIsSend] = useState<boolean>(false);
 
@@ -36,7 +36,7 @@ export default function Home() {
       section3,
       section4,
       section5,
-      section6,
+      // section6,
     ]) {
       refsNum.push((item.current!.clientHeight / 1.5 + heightSum) as number);
       heightSum += item.current!.clientHeight;
@@ -67,7 +67,7 @@ export default function Home() {
         <div className={clsx("container flex flex-row-reverse")}>
           <RightMenu
             isNavOpen={isNavOpen}
-            refs={[section1, section2, section3, section4, section5, section6]}
+            refs={[section1, section2, section3, section4, section5]}
           />
           <div
             className={clsx(
@@ -158,7 +158,7 @@ export default function Home() {
             </Section>
             <Section
               reference={section5}
-              nextRef={section6}
+              // nextRef={section6}
               isPlayAnime={playAnimeNum === 4}
               title="PROJECT"
               indexStr="05/06"
@@ -201,7 +201,7 @@ export default function Home() {
                 </div>
               </div>
             </Section>
-            <Section
+            {/* <Section
               reference={section6}
               isPlayAnime={playAnimeNum === 5}
               title="CONTACT"
@@ -231,7 +231,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-            </Section>
+            </Section> */}
           </div>
         </div>
       </div>
@@ -259,8 +259,8 @@ export const SectionTitle = ({
           <div className="w-40 h-40">
             <Image
               src={"/face.png"}
-              width={"20"}
-              height={"20"}
+              width={"120"}
+              height={"120"}
               alt="no image"
               className="w-full h-full rounded-full border-text border"
             />

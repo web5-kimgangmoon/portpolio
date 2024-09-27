@@ -98,13 +98,13 @@ export const RightMenuComp = ({
             isSelect={select === 4}
             delay="0.9s"
           />
-          <IndexComp
+          {/* <IndexComp
             title="CONTACT"
             number={"06"}
             target={refs[5]}
             isSelect={select === 5}
             delay="1.05s"
-          />
+          /> */}
         </nav>
         <div
           className="px-6 py-8 slideItem xl:translate-x-[250%]"
