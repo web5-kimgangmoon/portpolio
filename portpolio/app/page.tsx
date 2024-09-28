@@ -304,7 +304,7 @@ export default function Page() {
   );
 }
 
-export const StackImg = ({ src }: { src: string }) => {
+const StackImg = ({ src }: { src: string }) => {
   return (
     <div className="bg-white p-2 w-max rounded border-text border-2">
       <Image src={src} alt="no image" width={40} height={40} />
