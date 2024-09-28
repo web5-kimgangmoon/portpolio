@@ -33,7 +33,7 @@ export const SectionTitle = ({
           </div>
         </div>
         <div
-          className="text-[10rem] font-bold rightMoveAnime custom translate-x-[-100%]"
+          className="md:text-[10rem] text-[6rem] font-bold rightMoveAnime custom translate-x-[-100%]"
           style={{ animationDelay: "450ms" }}
         >
           <h1>김강문</h1>

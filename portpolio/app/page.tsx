@@ -84,12 +84,64 @@ export default function Page() {
               title="ABOUT ME"
               indexStr="02/05"
             >
-              <div className="text-xl rightMoveAnime">
-                국비 교육을 수료하며 js와 typescript, mysql을 학습해보고
-                프로젝트를 배포하기 위해 aws EC2에서 개인키를 받아와 git
-                action으로 CI/CD 환경을 구축해봤습니다. 더나아가 react의
-                생명주기와 컴포넌트에 대해 학습하여 렌더링을 줄이는 코딩법을
-                배웠습니다.
+              <div className="text-xl">
+                <div className="text-3xl rightMoveAnime translate-x-[-100%] font-bold">
+                  저는
+                </div>
+                <div
+                  className="text-3xl rightMoveAnime translate-x-[-100%] font-bold"
+                  style={{ animationDelay: "300ms" }}
+                >
+                  꿈을 향해 달려나가는 프론트 웹 개발을
+                </div>
+                <div
+                  className="pb-4 text-3xl rightMoveAnime translate-x-[-100%] font-bold"
+                  style={{ animationDelay: "600ms" }}
+                >
+                  지향하는 개발자 지망생입니다!
+                </div>
+                <div
+                  className="rightMoveAnime translate-x-[-100%]"
+                  style={{ animationDelay: "900ms" }}
+                >
+                  국비 교육을 수료하며 js와 typescript, mysql을 학습해보고
+                  프로젝트를 배포하기 위해 aws EC2에서 개인키를 받아와 git
+                  action으로 CI/CD 환경을 구축해봤습니다. 더나아가 react의
+                  생명주기와 컴포넌트에 대해 학습하여 렌더링을 줄이는 코딩법을
+                  배웠습니다. 또한 https 프로토콜로 aws에서 배포하는 법을
+                  배웠으며, 서버에서 활용하는 mysql과 nginx, nodejs를 설치 및
+                  초기설정을 배웠습니다.
+                </div>
+                <div className="py-4">
+                  <div
+                    className="pb-2 font-bold rightMoveAnime translate-x-[-100%]"
+                    style={{ animationDelay: "1050ms" }}
+                  >
+                    EXPERIENCE STACKS
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <div
+                      className="flex flex-wrap gap-2 rightMoveAnime translate-x-[-100%]"
+                      style={{ animationDelay: "1200ms" }}
+                    >
+                      <StackImg src="/stacks/aws.png" />
+                      <StackImg src="/stacks/github.png" />
+                      <StackImg src="/stacks/js.png" />
+                      <StackImg src="/stacks/mysql.png" />
+                      <StackImg src="/stacks/nodejs.png" />
+                    </div>
+                    <div
+                      className="flex flex-wrap gap-2 rightMoveAnime translate-x-[-100%]"
+                      style={{ animationDelay: "1350ms" }}
+                    >
+                      <StackImg src="/stacks/npm.png" />
+                      <StackImg src="/stacks/reactjs.png" />
+                      <StackImg src="/stacks/tailwindcss.png" />
+                      <StackImg src="/stacks/typescript.png" />
+                      <StackImg src="/stacks/vscode.png" />
+                    </div>
+                  </div>
+                </div>
               </div>
             </Section>
             <Section
@@ -118,7 +170,7 @@ export default function Page() {
                 />
                 <Skill
                   title="mysql"
-                  description="mysql_installation_secure로 초기설정을 해보고, create user “username”@”localhost” identified with mysql_native_password by “password”;로 유저를 만들고 create database db;로 데이터베이스를 만들어 grant all privileges on db.* to username;으로 권한을 부여해봤습니다."
+                  description="프로젝트를 진행하면서 테이블들을 설계해보고, 최소한의 테이블로 최대한 많은 정보를 저장할 방법을 찾아보고 일대다 다대다 등 다양한 관계를 맺어봤습니다."
                 />
               </div>
             </Section>
@@ -129,7 +181,11 @@ export default function Page() {
               title="EXPERIENCE"
               indexStr="04/05"
             >
-              <div className={clsx("text-xl lineDownComp relative")}>
+              <div
+                className={clsx(
+                  "text-xl lineDownComp relative mx-2 overflow-x-hidden"
+                )}
+              >
                 <div className="top-0 left-0 h-0 absolute lineDownCompBase flex flex-col justify-end items-center">
                   <div className="w-[2px] h-full bg-color20"></div>
                   <div className="w-[3px] h-[3px] bg-text"></div>
@@ -176,22 +232,32 @@ export default function Page() {
                   </div>
                   <div className="text-3xl font-bold">The board</div>
                   <div className="text-xl text-color50">
-                    <Link
+                    <button
                       className="hover:text-text hover:font-bold hover:underline"
-                      href={"https://deploy.clashcrash.com"}
+                      onClick={() => {
+                        window.open(
+                          "https://deploy.clashcrash.com",
+                          "project",
+                          "fullscreen=yes"
+                        );
+                      }}
                     >
                       게시판
-                    </Link>
+                    </button>
                   </div>
                   <div className="text-xl text-color50">
-                    <Link
+                    <button
                       className="hover:text-text hover:font-bold hover:underline"
-                      href={
-                        "https://github.com/web5-kimgangmoon/nextJS_PersonalProject"
-                      }
+                      onClick={() => {
+                        window.open(
+                          "https://github.com/web5-kimgangmoon/nextJS_PersonalProject",
+                          "gitPage",
+                          "fullscreen=yes"
+                        );
+                      }}
                     >
                       git
-                    </Link>
+                    </button>
                   </div>
                   <div className="py-6 text-sm flex gap-2">
                     FRONTED
@@ -238,3 +304,11 @@ export default function Page() {
     </div>
   );
 }
+
+export const StackImg = ({ src }: { src: string }) => {
+  return (
+    <div className="bg-white p-2 w-max rounded border-text border-2">
+      <Image src={src} alt="no image" width={40} height={40} />
+    </div>
+  );
+};
