@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 // import Inter from "next/font/google";
 import localfont from "next/font/local";
 import "@/public/globals.css";
-import Head from "next/head";
 
 export const metadata: Metadata = {
   title: "portpolio kim",
