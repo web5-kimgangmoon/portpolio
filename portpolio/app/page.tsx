@@ -8,7 +8,6 @@ import Image from "next/image";
 
 import { selectIndex } from "./lib/selectIndex";
 import { throttle } from "@/app/lib/throttle";
-import Link from "next/link";
 import { Experience_each, Section, SectionTitle, Skill } from "./ui/sections";
 
 export default function Page() {
