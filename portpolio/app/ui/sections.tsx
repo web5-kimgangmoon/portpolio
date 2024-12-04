@@ -65,7 +65,7 @@ export const SectionTitle = ({
 export const Tags = ({ tags, delay }: { tags: string[]; delay: number }) => {
   return (
     <div
-      className="text-background font-1.5rem rightMoveAnime translate-x-[-100%] text-color60 flex gap-2"
+      className="text-background text-lg rightMoveAnime translate-x-[-100%] text-color60 flex gap-2"
       style={{ animationDelay: `${delay}ms` }}
     >
       {tags.map((content, idx) => {
