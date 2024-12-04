@@ -3,7 +3,7 @@
 import { HeroArrow } from "@/public/heroArrow";
 import clsx from "clsx";
 import Image from "next/image";
-import { LegacyRef, ReactNode, RefObject, useEffect } from "react";
+import { ReactNode, RefObject, useEffect } from "react";
 
 export const SectionTitle = ({
   reference,
@@ -98,7 +98,7 @@ export const Section = ({
     if (isPlayAnime) {
       reference.current?.classList.remove("parent");
     }
-  }, [isPlayAnime]);
+  }, [isPlayAnime, reference]);
   return (
     <section
       className="overflow-hidden pt-[30px] min-h-screen flex flex-col justify-between parent"

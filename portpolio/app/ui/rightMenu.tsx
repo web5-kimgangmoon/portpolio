@@ -54,7 +54,7 @@ export const RightMenuComp = ({
         setInnerHeight(window.innerHeight);
     };
     scrollEvControll(false);
-  }, [innerHeight]);
+  }, [innerHeight, refs, setSelect]);
   return (
     <div className={clsx("parent")} ref={all}>
       <div
