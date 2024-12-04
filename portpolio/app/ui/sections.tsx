@@ -3,7 +3,7 @@
 import { HeroArrow } from "@/public/heroArrow";
 import clsx from "clsx";
 import Image from "next/image";
-import { ReactNode, RefObject, useEffect } from "react";
+import { LegacyRef, ReactNode, RefObject, useEffect } from "react";
 
 export const SectionTitle = ({
   reference,
@@ -28,7 +28,7 @@ export const SectionTitle = ({
               width={"120"}
               height={"120"}
               alt="no image"
-              className="w-full h-full rounded-full border-text border"
+              className="w-full h-full rounded-[2rem]"
             />
           </div>
         </div>
@@ -52,9 +52,31 @@ export const SectionTitle = ({
           웹 프론트개발 지향
         </div>
       </div>
+      <div className="flex flex-col gap-3">
+        <Tags tags={["프론트", "웹개발", "aws"]} delay={450} />
+        <Tags tags={["react", "Node.js", "TS"]} delay={550} />
+        <Tags tags={["js", "html", "ES8"]} delay={650} />
+      </div>
       <NextButton nextRef={nextRef} delay="750ms" indexStr="01/06" />
     </section>
   );
+};
+
+export const Tags = ({ tags, delay }: { tags: string[]; delay: number }) => {
+  return (
+    <div
+      className="text-background font-1.5rem rightMoveAnime translate-x-[-100%] text-color60 flex gap-2"
+      style={{ animationDelay: `${delay}ms` }}
+    >
+      {tags.map((content, idx) => {
+        return <Tag key={idx}>{content}</Tag>;
+      })}
+    </div>
+  );
+};
+
+export const Tag = ({ children }: { children: string }) => {
+  return <span className="hover:text-text transition-colors">#{children}</span>;
 };
 
 export const Section = ({
@@ -84,7 +106,7 @@ export const Section = ({
     >
       <div>
         <div className="relative w-full pb-12">
-          <div className="absolute top-0 left-0 w-full border-b-[1rem] border-color75 py-5 reduceAnime"></div>
+          {/* <div className="absolute top-0 left-0 w-full border-b-[1rem] border-color75 py-5 reduceAnime"></div> */}
           <h1 className="text-[4rem] font-bold">{title}</h1>
         </div>
         {children}
