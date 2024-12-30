@@ -53,7 +53,7 @@ export default function Page() {
   }, [innerHeight]);
 
   return (
-    <div className={`body ${color} box-border`}>
+    <div className={`body ${color} box-border px-2`}>
       <TopBar
         setColor={setColor}
         setIsNavOpen={() =>
@@ -147,14 +147,44 @@ export default function Page() {
               reference={section3}
               nextRef={section4}
               isPlayAnime={playAnimeNum === 2}
+              title="EXPERIENCE"
+              indexStr="04/05"
+            >
+              <div
+                className={clsx(
+                  "text-xl lineDownComp relative mx-2 overflow-x-hidden"
+                )}
+              >
+                <div className="top-0 left-0 h-0 absolute lineDownCompBase flex flex-col justify-end items-center">
+                  <div className="w-[2px] h-full bg-color20"></div>
+                  <div className="w-[3px] h-[3px] bg-text"></div>
+                </div>
+                <Experience_each
+                  title="웹배포"
+                  content="aws-ec2, 클라우드 호스팅 서비스를 활용하여 ubuntu 운영체제 상에 nginx로 페이지를 배포해봤습니다."
+                />
+                <Experience_each
+                  title="github"
+                  content="팀프로젝트로 github의 형상관리를 통해 팀원들과 협업과 분업을 경험했습니다."
+                />
+                <Experience_each
+                  title="figma"
+                  content="피그마로 코딩할 페이지를 유동적으로 재구성가능한 요소들로 설계해봤습니다."
+                />
+                <Experience_each
+                  title="git actions"
+                  content="학원에서 배운 git actions를 통해 github에 커밋될 때마다 자동적으로 배포되도록 설정해봤습니다."
+                />
+              </div>
+            </Section>
+            <Section
+              reference={section4}
+              nextRef={section5}
+              isPlayAnime={playAnimeNum === 3}
               title="SKILLS"
               indexStr="03/05"
             >
               <div className="text-xl rightMoveAnime flex flex-wrap">
-                <Skill
-                  title="figma"
-                  description="실제 html 구조처럼 프레임을 활용해 레이아웃을 구성해봤습니다."
-                />
                 <Skill
                   title="react"
                   description="useMemo, useCallback, useState, useContext로 커스텀 훅을 코딩해보고, useEffect를 활용해 componentDidMount와 componenetDidUpdate 주기에 따라 리렌더링 시켜봤습니다."
@@ -174,44 +204,6 @@ export default function Page() {
               </div>
             </Section>
             <Section
-              reference={section4}
-              nextRef={section5}
-              isPlayAnime={playAnimeNum === 3}
-              title="EXPERIENCE"
-              indexStr="04/05"
-            >
-              <div
-                className={clsx(
-                  "text-xl lineDownComp relative mx-2 overflow-x-hidden"
-                )}
-              >
-                <div className="top-0 left-0 h-0 absolute lineDownCompBase flex flex-col justify-end items-center">
-                  <div className="w-[2px] h-full bg-color20"></div>
-                  <div className="w-[3px] h-[3px] bg-text"></div>
-                </div>
-                <Experience_each
-                  title="모달"
-                  content="팀프로젝트를 진행했을 당시에 react-modal을 라이브러리를 경험해봤지만, 해당 라이브러리만으로는 원하는 애니메이션(위에서 아래로 내려오는 드롭다운 모달)을 지닌 컴포넌트를 구현하기 힘들거라고 판단해 직접 컴포넌트를 작성해보고 backdrop-filter style로 blur 효과를 추가해줬습니다."
-                />
-                <Experience_each
-                  title="대댓글 구현"
-                  content="html과 react 둘 다 구현해봤습니다. html에서는 백엔드가 넘겨준 createdAt이 오름차순의 댓글들을 replyId가 존재하는 댓글들을 해당 댓글들에 넣어주는 방식으로 구현해봤고, react에서는 하위 컴포넌트가 우선적으로 만들어지는 특성을 고려해 재귀함수를 활용하여 구현해봤습니다."
-                />
-                <Experience_each
-                  title="페이징"
-                  content="게시글들의 갯수와 현재 페이지에 따라 페이지 버튼들의 모양과 갯수가 다르게 렌더링되도록 구현해줬습니다."
-                />
-                <Experience_each
-                  title="슬라이드"
-                  content="자동으로 재생되며 멈춤 버튼이 있고, 왼쪽과 오른쪽으로 움직일 수 있는 슬라이드를 구현해봤습니다."
-                />
-                <Experience_each
-                  title="간단한 터치 슬라이드"
-                  content="모바일 웹에서 직접 슬라이드시켜 양옆으로 이동할 수 있도록 커스텀 훅을 구현해봤습니다. clientX를 활용했고, touchStart로 시작점과 컴포넌트의 길이(한계)를 확인하고 컴포넌트의 touchMove로 이동거리를 측정하고 그만큼 반대방향으로 translateX가 추가되도록 했습니다."
-                />
-              </div>
-            </Section>
-            <Section
               reference={section5}
               // nextRef={section6}
               isPlayAnime={playAnimeNum === 4}
@@ -219,49 +211,52 @@ export default function Page() {
               indexStr="05/05"
             >
               <div className="rightMoveAnime">
-                <div className="hover:translate-y-[-10%] transition-transform max-w-max opacity_hover">
-                  <div className="w-32 h-64">
-                    <Image
-                      src={"/project.png"}
-                      alt="no image"
-                      width={120}
-                      height={120}
-                      className="w-full h-full  opacity-50 transition-opacity target"
-                    />
-                  </div>
-                  <div className="text-3xl font-bold">The board</div>
-                  <div className="text-xl text-color50">
-                    <button
-                      className="hover:text-text hover:font-bold hover:underline"
-                      onClick={() => {
-                        window.open(
-                          "https://deploy.clashcrash.com",
-                          "project",
-                          "fullscreen=yes"
-                        );
-                      }}
-                    >
-                      게시판
-                    </button>
-                  </div>
-                  <div className="text-xl text-color50">
-                    <button
-                      className="hover:text-text hover:font-bold hover:underline"
-                      onClick={() => {
-                        window.open(
-                          "https://github.com/web5-kimgangmoon/nextJS_PersonalProject",
-                          "gitPage",
-                          "fullscreen=yes"
-                        );
-                      }}
-                    >
-                      git
-                    </button>
-                  </div>
-                  <div className="py-6 text-sm flex gap-2">
-                    FRONTED
-                    <div className="w-3 pt-[0.625rem] before:border-t before:border-text before:w-full before:block"></div>
-                    BACKEND
+                <div className="max-w-max opacity_hover group">
+                  <div className="group-hover:translate-y-[-10%] transition-transform">
+                    <div className="w-32 h-64">
+                      <Image
+                        src={"/project.png"}
+                        alt="no image"
+                        width={120}
+                        height={120}
+                        className="w-full h-full  opacity-50 transition-opacity target"
+                      />
+                    </div>
+                    <div className="text-3xl font-bold">The board</div>
+                    <div className="text-xl text-color50">
+                      <button
+                        className="hover:text-text hover:font-bold hover:underline"
+                        onClick={() => {
+                          window.open(
+                            "https://deploy.clashcrash.com",
+                            "project",
+                            "fullscreen=yes"
+                          );
+                        }}
+                      >
+                        게시판
+                      </button>
+                    </div>
+
+                    <div className="text-xl text-color50">
+                      <button
+                        className="hover:text-text hover:font-bold hover:underline"
+                        onClick={() => {
+                          window.open(
+                            "https://github.com/web5-kimgangmoon/nextJS_PersonalProject",
+                            "gitPage",
+                            "fullscreen=yes"
+                          );
+                        }}
+                      >
+                        git
+                      </button>
+                    </div>
+                    <div className="py-6 text-sm flex gap-2">
+                      FRONTED
+                      <div className="w-3 pt-[0.625rem] before:border-t before:border-text before:w-full before:block"></div>
+                      BACKEND
+                    </div>
                   </div>
                 </div>
               </div>

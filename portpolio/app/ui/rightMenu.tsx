@@ -78,14 +78,14 @@ export const RightMenuComp = ({
             delay="0.45s"
           />
           <IndexComp
-            title="SKILLS"
+            title="EXPERIENCE"
             number={"03"}
             target={refs[2]}
             isSelect={select === 2}
             delay="0.6s"
           />
           <IndexComp
-            title="EXPERIENCE"
+            title="SKILLS"
             number={"04"}
             target={refs[3]}
             isSelect={select === 3}

@@ -52,7 +52,7 @@ export const SectionTitle = ({
           웹 프론트개발 지향
         </div>
       </div>
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 cursor-default">
         <Tags tags={["프론트", "웹개발", "aws"]} delay={450} />
         <Tags tags={["react", "Node.js", "TS"]} delay={550} />
         <Tags tags={["js", "html", "ES8"]} delay={650} />
@@ -65,7 +65,7 @@ export const SectionTitle = ({
 export const Tags = ({ tags, delay }: { tags: string[]; delay: number }) => {
   return (
     <div
-      className="text-background text-lg rightMoveAnime translate-x-[-100%] text-color60 flex gap-2"
+      className="text-background text-lg rightMoveAnime translate-x-[-100%] text-color60 flex gap-2 items-center"
       style={{ animationDelay: `${delay}ms` }}
     >
       {tags.map((content, idx) => {
@@ -76,7 +76,11 @@ export const Tags = ({ tags, delay }: { tags: string[]; delay: number }) => {
 };
 
 export const Tag = ({ children }: { children: string }) => {
-  return <span className="hover:text-text transition-colors">#{children}</span>;
+  return (
+    <span className="hover:text-text hover:text-3xl hover:font-bold delay-75 transition-all">
+      #{children}
+    </span>
+  );
 };
 
 export const Section = ({
