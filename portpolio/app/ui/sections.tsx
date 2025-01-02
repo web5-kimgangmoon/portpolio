@@ -53,9 +53,9 @@ export const SectionTitle = ({
         </div>
       </div>
       <div className="flex flex-col gap-3 cursor-default">
-        <Tags tags={["프론트", "웹개발", "aws"]} delay={450} />
-        <Tags tags={["react", "Node.js", "TS"]} delay={550} />
-        <Tags tags={["js", "html", "ES8"]} delay={650} />
+        <Tags tags={["프론트", "웹개발", "AWS"]} delay={450} />
+        <Tags tags={["REACT", "NODEJS", "TS"]} delay={550} />
+        <Tags tags={["JS", "HTML", "ES8"]} delay={650} />
       </div>
       <NextButton nextRef={nextRef} delay="750ms" indexStr="01/06" />
     </section>

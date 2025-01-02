@@ -103,13 +103,22 @@ export default function Page() {
                   className="rightMoveAnime translate-x-[-100%]"
                   style={{ animationDelay: "900ms" }}
                 >
-                  국비 교육을 수료하며 js와 typescript, mysql을 학습해보고
-                  프로젝트를 배포하기 위해 aws EC2에서 개인키를 받아와 git
-                  action으로 CI/CD 환경을 구축해봤습니다. 더나아가 react의
-                  생명주기와 컴포넌트에 대해 학습하여 렌더링을 줄이는 코딩법을
-                  배웠습니다. 또한 https 프로토콜로 aws에서 배포하는 법을
-                  배웠으며, 서버에서 활용하는 mysql과 nginx, nodejs를 설치 및
-                  초기설정을 배웠습니다.
+                  <ul className="list-disc pl-6">
+                    <li className="py-2">
+                      국비 교육을 수료하며 js와 typescript, mysql을 학습해보고
+                      프로젝트를 배포하기 위해 aws EC2에서 개인키를 받아와 git
+                      action으로 CI/CD 환경을 구축해봤습니다.
+                    </li>
+                    <li className="py-2">
+                      react의 생명주기와 컴포넌트에 대해 학습하여 다양한 훅을
+                      이용한 코딩을 배웠습니다.
+                    </li>
+                    <li className="py-2">
+                      https 프로토콜로 aws에서 배포하는 법을 배웠으며, 서버에서
+                      활용하는 mysql과 nginx, nodejs를 설치 및 초기설정을
+                      배웠습니다.
+                    </li>
+                  </ul>
                 </div>
                 <div className="py-4">
                   <div
@@ -253,7 +262,7 @@ export default function Page() {
                       </button>
                     </div>
                     <div className="py-6 text-sm flex gap-2">
-                      FRONTED
+                      FRONTEND
                       <div className="w-3 pt-[0.625rem] before:border-t before:border-text before:w-full before:block"></div>
                       BACKEND
                     </div>
