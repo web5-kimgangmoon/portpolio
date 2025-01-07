@@ -8,6 +8,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        sm: { max: "1279px" },
+        md: { max: "1279px" },
+      },
       colors: {
         text: "var(--color)",
         background: "var(--background)",
@@ -20,6 +24,9 @@ const config: Config = {
       },
       container: {
         center: true,
+      },
+      cursor: {
+        custom_test: "url(/cursor.svg), default",
       },
     },
   },

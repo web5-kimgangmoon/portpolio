@@ -1,16 +1,25 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { TopBar } from "./ui/topBar";
 import { RightMenu } from "./ui/rightMenu";
 import clsx from "clsx";
 import Image from "next/image";
 
 import { selectIndex } from "./lib/selectIndex";
-import { throttle } from "@/app/lib/throttle";
-import { Experience_each, Section, SectionTitle, Skill } from "./ui/sections";
+import {
+  Experience_each,
+  Section,
+  SectionEmail,
+  SectionTitle,
+  Skill,
+} from "./ui/sections";
+import sectionCheck from "./lib/sectionCheck";
 
 export default function Page() {
+  const sliderId = useId();
+  const slider = useRef<HTMLDivElement>(null);
+
   const [innerHeight, setInnerHeight] = useState<number>(0);
 
   const [color, setColor] = useState<string>("yellow");
@@ -22,7 +31,7 @@ export default function Page() {
   const section3 = useRef<HTMLElement>(null);
   const section4 = useRef<HTMLElement>(null);
   const section5 = useRef<HTMLElement>(null);
-  // const section6 = useRef<HTMLElement>(null);
+  const section6 = useRef<HTMLElement>(null);
 
   // const [isSend, setIsSend] = useState<boolean>(false);
 
@@ -35,22 +44,113 @@ export default function Page() {
       section3,
       section4,
       section5,
-      // section6,
+      section6,
     ]) {
       refsNum.push((item.current!.clientHeight / 1.5 + heightSum) as number);
       heightSum += item.current!.clientHeight;
     }
     const indexFunction = selectIndex(refsNum);
-    setPlayAnimeNum(indexFunction(window.scrollY));
-    const handleThrottle = throttle(() => {
+    if (window.innerWidth < 1280)
       setPlayAnimeNum(indexFunction(window.scrollY));
-    }, 300);
-    window.addEventListener("scroll", handleThrottle);
+    // const handleThrottle = throttle(() => {
+    //   setPlayAnimeNum(indexFunction(window.scrollY));
+    // }, 300);
+    // window.addEventListener("scroll", handleThrottle);
+    window.addEventListener("scroll", () => {
+      if (window.innerWidth < 1280)
+        setPlayAnimeNum(indexFunction(window.scrollY));
+    });
+  }, [innerHeight]);
+  useEffect(() => {
     window.addEventListener("resize", () => {
+      if (window.innerWidth < 1280) {
+        window.onwheel = null;
+        sectionCheck(section1, playAnimeNum, 0);
+        sectionCheck(section2, playAnimeNum, 1);
+        sectionCheck(section3, playAnimeNum, 2);
+        sectionCheck(section4, playAnimeNum, 3);
+        sectionCheck(section5, playAnimeNum, 4);
+        sectionCheck(section6, playAnimeNum, 5);
+      } else
+        window.onwheel = (e) => {
+          if (!slider.current) return;
+          if (slider.current.style.transform) {
+            // const slideX = +slider.current.style.transform
+            //   .split("translateX(")[1]
+            //   .split("%)")[0];
+            // const slideIDX = slideX / 100;
+            // if (e.deltaY > 0 && slideIDX > -5) {
+            // slider.current.style.transform = `translateX(${slideX - 100}%)`;
+            // setPlayAnimeNum(-slideX / 100 + 1);
+            if (e.deltaY > 0 && playAnimeNum < 5) {
+              // slider.current.style.transform = `translateX(${
+              //   -playAnimeNum * 100 - 100
+              // }%)`;
+              setPlayAnimeNum(playAnimeNum + 1);
+            }
+            // if (e.deltaY < 0 && slideIDX < 0) {
+            // slider.current.style.transform = `translateX(${slideX + 100}%)`;
+
+            // setPlayAnimeNum(-slideX / 100 - 1);
+            if (e.deltaY < 0 && playAnimeNum > 0) {
+              // slider.current.style.transform = `translateX(${
+              //   -playAnimeNum * 100 + 100
+              // }%)`;
+              setPlayAnimeNum(playAnimeNum - 1);
+            }
+          }
+        };
       if (window.innerHeight !== innerHeight)
         setInnerHeight(window.innerHeight);
     });
-  }, [innerHeight]);
+  }, [playAnimeNum]);
+  // 추가했습니다
+  useEffect(() => {
+    if (window.innerWidth < 1280) window.onwheel = null;
+    else
+      window.onwheel = (e) => {
+        if (!slider.current) return;
+        if (slider.current.style.transform) {
+          // const slideX = +slider.current.style.transform
+          //   .split("translateX(")[1]
+          //   .split("%)")[0];
+          // const slideIDX = slideX / 100;
+          // if (e.deltaY > 0 && slideIDX > -5) {
+          // slider.current.style.transform = `translateX(${slideX - 100}%)`;
+          // setPlayAnimeNum(-slideX / 100 + 1);
+          if (e.deltaY > 0 && playAnimeNum < 5) {
+            // slider.current.style.transform = `translateX(${
+            //   -playAnimeNum * 100 - 100
+            // }%)`;
+            setPlayAnimeNum(playAnimeNum + 1);
+          }
+          // if (e.deltaY < 0 && slideIDX < 0) {
+          // slider.current.style.transform = `translateX(${slideX + 100}%)`;
+
+          // setPlayAnimeNum(-slideX / 100 - 1);
+          if (e.deltaY < 0 && playAnimeNum > 0) {
+            // slider.current.style.transform = `translateX(${
+            //   -playAnimeNum * 100 + 100
+            // }%)`;
+            setPlayAnimeNum(playAnimeNum - 1);
+          }
+        }
+      };
+  }, [slider.current, playAnimeNum]);
+  useEffect(() => {
+    if (slider.current) {
+      // if (window.innerWidth < 1280) {
+      // sectionCheck(section1, playAnimeNum, 0);
+      // sectionCheck(section2, playAnimeNum, 1);
+      // sectionCheck(section3, playAnimeNum, 2);
+      // sectionCheck(section4, playAnimeNum, 3);
+      // sectionCheck(section5, playAnimeNum, 4);
+      // sectionCheck(section6, playAnimeNum, 5);
+      // }
+      slider.current.style.transform =
+        slider.current.style.transform = `translateX(${-playAnimeNum * 100}%)`;
+    }
+  }, [playAnimeNum]);
 
   return (
     <div className={`body ${color} box-border px-2`}>
@@ -62,26 +162,51 @@ export default function Page() {
           })
         }
       />
-      <div>
-        <div className={clsx("container flex flex-row-reverse")}>
-          <RightMenu
-            isNavOpen={isNavOpen}
-            refs={[section1, section2, section3, section4, section5]}
-          />
+
+      <div className={clsx("container flex flex-row-reverse")}>
+        <RightMenu
+          select={playAnimeNum}
+          setSelect={setPlayAnimeNum}
+          isNavOpen={isNavOpen}
+          slider={slider}
+          refs={[section1, section2, section3, section4, section5, section6]}
+        />
+        <div
+          className={clsx(
+            "relative overflow-hidden w-full xl:h-screen",
+            "transition-transform duration-300",
+            isNavOpen
+              ? "translate-x-[-150%] xl:translate-x-0 ease-in"
+              : "ease-out"
+          )}
+        >
           <div
             className={clsx(
-              "w-full",
-              "transition-transform duration-300",
-              isNavOpen && "translate-x-[-30rem] xl:translate-x-0"
+              "w-full h-full",
+              "xl:flex xl:absolute xl:top-0 xl:left-0",
+              "sm:!translate-x-0 md:!translate-x-0",
+              "transition-transform duration-300"
             )}
+            id={sliderId}
+            ref={slider}
           >
-            <SectionTitle reference={section1} nextRef={section2} />
+            <SectionTitle
+              reference={section1}
+              nextRef={section2}
+              setIdx={() => setPlayAnimeNum(1)}
+              // slider={slider}
+              // nextIdx={1}
+            />
             <Section
               reference={section2}
               nextRef={section3}
               isPlayAnime={playAnimeNum === 1}
               title="ABOUT ME"
-              indexStr="02/05"
+              indexStr="02/06"
+              setIdx={() => setPlayAnimeNum(2)}
+
+              // slider={slider}
+              // nextIdx={2}
             >
               <div className="text-xl">
                 <div className="text-3xl rightMoveAnime translate-x-[-100%] font-bold">
@@ -106,8 +231,8 @@ export default function Page() {
                   <ul className="list-disc pl-6">
                     <li className="py-2">
                       국비 교육을 수료하며 js와 typescript, mysql을 학습해보고
-                      프로젝트를 배포하기 위해 aws EC2에서 개인키를 받아와 git
-                      action으로 CI/CD 환경을 구축해봤습니다.
+                      프로젝트를 배포하기 위해 aws EC2에서 개인키를 받아와
+                      gitHub action으로 CI/CD 환경을 구축해봤습니다.
                     </li>
                     <li className="py-2">
                       react의 생명주기와 컴포넌트에 대해 학습하여 다양한 훅을
@@ -157,7 +282,11 @@ export default function Page() {
               nextRef={section4}
               isPlayAnime={playAnimeNum === 2}
               title="EXPERIENCE"
-              indexStr="04/05"
+              indexStr="03/06"
+              setIdx={() => setPlayAnimeNum(3)}
+
+              // slider={slider}
+              // nextIdx={3}
             >
               <div
                 className={clsx(
@@ -181,8 +310,8 @@ export default function Page() {
                   content="피그마로 코딩할 페이지를 유동적으로 재구성가능한 요소들로 설계해봤습니다."
                 />
                 <Experience_each
-                  title="git actions"
-                  content="학원에서 배운 git actions를 통해 github에 커밋될 때마다 자동적으로 배포되도록 설정해봤습니다."
+                  title="gitHub actions"
+                  content="학원에서 배운 gitHub actions를 통해 github에 커밋될 때마다 자동적으로 배포되도록 설정해봤습니다."
                 />
               </div>
             </Section>
@@ -191,7 +320,11 @@ export default function Page() {
               nextRef={section5}
               isPlayAnime={playAnimeNum === 3}
               title="SKILLS"
-              indexStr="03/05"
+              indexStr="04/06"
+              setIdx={() => setPlayAnimeNum(4)}
+
+              // slider={slider}
+              // nextIdx={4}
             >
               <div className="text-xl rightMoveAnime flex flex-wrap">
                 <Skill
@@ -214,10 +347,13 @@ export default function Page() {
             </Section>
             <Section
               reference={section5}
-              // nextRef={section6}
+              nextRef={section6}
               isPlayAnime={playAnimeNum === 4}
               title="PROJECT"
-              indexStr="05/05"
+              indexStr="05/06"
+              setIdx={() => setPlayAnimeNum(5)}
+              // slider={slider}
+              // nextIdx={5}
             >
               <div className="rightMoveAnime">
                 <div className="max-w-max opacity_hover group">
@@ -270,11 +406,16 @@ export default function Page() {
                 </div>
               </div>
             </Section>
+            <SectionEmail
+              reference={section6}
+              playAnimeNum={playAnimeNum}
+              // slider={slider}
+            />
             {/* <Section
               reference={section6}
               isPlayAnime={playAnimeNum === 5}
               title="CONTACT"
-              indexStr="06/05"
+              indexStr="06/06"
             >
               <div className="rightMoveAnime">
                 <div>

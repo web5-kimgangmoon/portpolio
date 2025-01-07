@@ -3,18 +3,28 @@
 import { HeroArrow } from "@/public/heroArrow";
 import clsx from "clsx";
 import Image from "next/image";
-import { ReactNode, RefObject, useEffect } from "react";
+import { ReactNode, RefObject, useCallback, useEffect, useState } from "react";
+import z from "zod";
 
 export const SectionTitle = ({
   reference,
   nextRef,
-}: {
+  setIdx,
+}: // slider,
+// nextIdx,
+{
   reference: RefObject<HTMLElement>;
   nextRef: RefObject<HTMLElement>;
+  // slider: RefObject<HTMLElement | null>;
+  // nextIdx: number;
+  setIdx: () => void;
 }) => {
   return (
     <section
-      className="overflow-hidden pt-[30px] min-h-screen flex flex-col justify-between"
+      className={clsx(
+        "w-full shrink-0",
+        "overflow-hidden pt-[30px] min-h-screen flex flex-col justify-between"
+      )}
       ref={reference}
     >
       <div>
@@ -57,7 +67,14 @@ export const SectionTitle = ({
         <Tags tags={["REACT", "NODEJS", "TS"]} delay={550} />
         <Tags tags={["JS", "HTML", "ES8"]} delay={650} />
       </div>
-      <NextButton nextRef={nextRef} delay="750ms" indexStr="01/06" />
+      <NextButton
+        nextRef={nextRef}
+        delay="750ms"
+        indexStr="01/06"
+        setIdx={setIdx}
+        // slider={slider}
+        // moveIdx={nextIdx}
+      />
     </section>
   );
 };
@@ -83,6 +100,121 @@ export const Tag = ({ children }: { children: string }) => {
   );
 };
 
+export const SectionEmail = ({
+  reference,
+  playAnimeNum,
+  setIdx,
+}: // slider,
+// nextIdx,
+{
+  reference: RefObject<HTMLElement>;
+  playAnimeNum: number;
+  setIdx?: () => void;
+  // slider: RefObject<HTMLElement | null>;
+  // nextIdx?: number;
+}) => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const [sendState, setSendState] = useState({ isSend: false, isFail: false });
+  const emailCheck = z.string().email();
+
+  const onSend = useCallback(
+    async (name: string, email: string, message: string) => {
+      const emailChkResult = emailCheck.safeParse(email);
+
+      if (emailChkResult.success && name && message) {
+        if (
+          (await (
+            await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+              method: "post",
+              headers: [["content-type", "application/json"]],
+              body: JSON.stringify({
+                service_id: "service_portfolio",
+                template_id: "template_portfolio",
+                user_id: "kmQb_Zh3Ixp7REMDa",
+                template_params: {
+                  name: name,
+                  email: email,
+                  message: message,
+                },
+              }),
+            })
+          ).text()) === "OK"
+        ) {
+          setSendState({ isSend: true, isFail: false });
+          setName("");
+          setEmail("");
+          setMessage("");
+        }
+      } else {
+        setSendState({ isSend: false, isFail: true });
+      }
+    },
+    []
+  );
+  return (
+    <Section
+      reference={reference}
+      isPlayAnime={playAnimeNum === 5}
+      title="CONTACT"
+      indexStr="06/06"
+      setIdx={setIdx}
+      // slider={slider}
+      // nextIdx={nextIdx ? nextIdx : 0}
+    >
+      <div className="rightMoveAnime">
+        <div>
+          <div className="pb-16 font-bold text-3xl">LEAVE A MESSAGE</div>
+          <div className="flex gap-8 xl:pr-40 md:pr-20 pb-10">
+            <InputBox
+              title="NAME"
+              placeholder="Your name"
+              id="name"
+              value={name}
+              setState={setName}
+            />
+            <InputBox
+              title="E-MAIL"
+              placeholder="@"
+              id="email"
+              value={email}
+              setState={setEmail}
+            />
+          </div>
+          <div className="xl:pr-40 md:pr-20">
+            <InputBox
+              title="MESSAGE"
+              placeholder="Your message"
+              id="message"
+              rows={6}
+              value={message}
+              setState={setMessage}
+            />
+          </div>
+          <div className="pt-12">
+            <button
+              className={clsx(
+                "px-8 py-2 border-2",
+                sendState.isSend ? "text-color50 border-color50" : "border-text"
+              )}
+              disabled={sendState.isSend}
+              onClick={() => onSend(name, email, message)}
+            >
+              {sendState.isSend
+                ? "complete"
+                : sendState.isFail
+                ? "resend"
+                : "send"}
+            </button>
+          </div>
+        </div>
+      </div>
+    </Section>
+  );
+};
+
 export const Section = ({
   reference,
   nextRef,
@@ -90,13 +222,19 @@ export const Section = ({
   indexStr,
   children,
   title,
-}: {
+  setIdx,
+}: // slider,
+// nextIdx,
+{
   reference: RefObject<HTMLElement>;
   nextRef?: RefObject<HTMLElement>;
   isPlayAnime: boolean;
   indexStr: string;
   children: ReactNode;
   title: string;
+  setIdx?: () => void;
+  // slider: RefObject<HTMLElement | null>;
+  // nextIdx: number;
 }) => {
   useEffect(() => {
     if (isPlayAnime) {
@@ -105,7 +243,10 @@ export const Section = ({
   }, [isPlayAnime, reference]);
   return (
     <section
-      className="overflow-hidden pt-[30px] min-h-screen flex flex-col justify-between parent"
+      className={clsx(
+        "w-full shrink-0",
+        "overflow-hidden pt-[30px] min-h-screen flex flex-col justify-between parent"
+      )}
       ref={reference}
     >
       <div>
@@ -116,7 +257,18 @@ export const Section = ({
         {children}
       </div>
 
-      <NextButton nextRef={nextRef} delay="300ms" indexStr={indexStr} />
+      {setIdx ? (
+        <NextButton
+          nextRef={nextRef}
+          delay="300ms"
+          indexStr={indexStr}
+          setIdx={setIdx}
+          // slider={slider}
+          // moveIdx={nextIdx}
+        />
+      ) : (
+        ""
+      )}
     </section>
   );
 };
@@ -176,11 +328,15 @@ export const InputBox = ({
   placeholder,
   id,
   rows,
+  value,
+  setState,
 }: {
   title: string;
   placeholder: string;
   id: string;
   rows?: number;
+  value: string;
+  setState: (str: string) => void;
 }) => {
   return (
     <div className="grow">
@@ -195,6 +351,10 @@ export const InputBox = ({
             id={id}
             className="outline-none bg-background py-2 border-b-2 border-text w-full"
             placeholder={placeholder}
+            value={value}
+            onChange={(e) => {
+              setState(e.currentTarget.value);
+            }}
           />
         ) : (
           <textarea
@@ -202,6 +362,10 @@ export const InputBox = ({
             className="outline-none bg-background py-2 border-b-2 border-text w-full"
             placeholder={placeholder}
             rows={rows}
+            value={value}
+            onChange={(e) => {
+              setState(e.currentTarget.value);
+            }}
           />
         )}
       </div>
@@ -213,11 +377,32 @@ export const NextButton = ({
   nextRef,
   delay,
   indexStr,
+  // slider,
+  // moveIdx,
+  setIdx,
 }: {
   nextRef?: RefObject<HTMLElement>;
   delay: string;
   indexStr: string;
+  // slider: RefObject<HTMLElement | null>;
+  // moveIdx: number;
+  setIdx: () => void;
 }) => {
+  const nextMove = useCallback(() => {
+    if (!nextRef) return;
+    setIdx();
+    if (!window) return;
+    if (window.innerWidth < 1280) {
+      if (nextRef.current)
+        nextRef.current.scrollIntoView({
+          block: "start",
+          behavior: "smooth",
+        });
+    }
+    // else {
+    //   slider.current!.style.transform = `translateX(${-moveIdx * 100}%)`;
+    // }
+  }, []);
   return (
     <div className="py-10">
       <div
@@ -226,17 +411,7 @@ export const NextButton = ({
           nextRef && "cursor-pointer"
         )}
         style={{ animationDelay: delay }}
-        onClick={
-          nextRef
-            ? () => {
-                if (nextRef.current)
-                  nextRef.current.scrollIntoView({
-                    block: "start",
-                    behavior: "smooth",
-                  });
-              }
-            : undefined
-        }
+        onClick={nextMove}
       >
         <div className="whitespace-pre-wrap text-sm py-2">
           <span className="text-color20 pr-3">{indexStr}</span>
