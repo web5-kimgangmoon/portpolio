@@ -48,13 +48,17 @@ export const SectionTitle = ({
             </div>
             <div
               className={clsx(
-                "sm:text-[3rem] sm:pl-3 text-[6rem] font-bold cursor-pointer",
+                "sm:text-[3rem] sm:pl-3 text-[6rem] font-bold cursor-pointer w-max",
                 "rightMoveAnime custom translate-x-[-100%]"
               )}
               style={{ animationDelay: "450ms" }}
               onClick={() => setIsFocusName(!isFocusName)}
             >
-              <div className="pl-2 xl:w-[27.5rem] md:w-[27.5rem] sm:w-[14rem] text-text">
+              <div
+                className={`pl-2 py-4 sm:py-2 xl:w-[16rem] md:w-[16rem] sm:w-[8.25rem] text-text ${
+                  isFocusName ? "" : "hidden"
+                }`}
+              >
                 <MyName isFocus={isFocusName} />
               </div>
               <h1 className={`${isFocusName ? "hidden" : "inline"}`}>김강문</h1>

@@ -5,7 +5,7 @@ export const MyName = ({ isFocus }: { isFocus: boolean }) => {
     isFocus && (
       <svg
         strokeWidth={0.5}
-        viewBox="0 0 30 10"
+        viewBox="0 0 16.2 7.3"
         fill="none"
         stroke={"currentColor"}
       >
