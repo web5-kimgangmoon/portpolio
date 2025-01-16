@@ -79,6 +79,38 @@ input:is(:-webkit-autofill, :autofill) {
     transform: translateX(0);
   }
 }
+@keyframes rightMoreMove {
+  0% {
+    transform: translateX(-150%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes leftMove {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes upMove {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes downMove {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
 @keyframes rightMoveCustom {
   0% {
     transform: translateX(-100%);
@@ -87,14 +119,30 @@ input:is(:-webkit-autofill, :autofill) {
     transform: translateX(-1rem);
   }
 }
-@keyframes reduceLength {
+@keyframes titleLine {
+  0% {
+    transform: translateX(200%);
+  }
+  100% {
+    transform: translateX(calc(4rem));
+  }
+}
+@keyframes titleLineBefore {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+/* @keyframes reduceLength {
   0% {
     width: 100%;
   }
   100% {
     width: 0;
   }
-}
+} */
 @keyframes strechLength {
   0% {
     transform: translateX(-100%);
@@ -106,10 +154,39 @@ input:is(:-webkit-autofill, :autofill) {
 
 .rightMoveAnime {
   animation-name: rightMove;
+}
+.rightMoreMoveAnime {
+  animation-name: rightMoreMove;
+}
+.leftMoveAnime {
+  animation-name: leftMove;
+}
+.upMoveAnime,
+.upMoveAnimeBefore::before {
+  animation-name: upMove;
+}
+.downMoveAnime,
+.downMoveAnimeAfter::after {
+  animation-name: downMove;
+}
+
+.downMoveAnimeAfter::after,
+.upMoveAnimeBefore::before {
+  animation-delay: 1500ms;
+}
+
+.rightMoveAnime,
+.rightMoreMoveAnime,
+.leftMoveAnime,
+.upMoveAnimeBefore::before,
+.upMoveAnime,
+.downMoveAnimeAfter::after,
+.downMoveAnime {
   animation-timing-function: cubic-bezier(0.39, 0.575, 0.565, 1);
   animation-fill-mode: forwards;
   animation-duration: 300ms;
 }
+
 .rightMoveAnime.custom {
   animation-name: rightMoveCustom;
 }
@@ -127,7 +204,21 @@ input:is(:-webkit-autofill, :autofill) {
 .strechAnimeB::before {
   animation-delay: 1300ms;
 }
-.reduceAnime {
+
+.titleLineAnime {
+  animation-name: titleLine;
+  animation-timing-function: cubic-bezier(0.39, 0.575, 0.565, 1);
+  animation-fill-mode: forwards;
+  animation-duration: 300ms;
+  animation-delay: 300ms;
+}
+.titleLineAnimeBefore::before {
+  animation-name: titleLineBefore;
+  animation-timing-function: cubic-bezier(0.39, 0.575, 0.565, 1);
+  animation-fill-mode: forwards;
+  animation-duration: 300ms;
+}
+/* .reduceAnime {
   animation-name: reduceLength;
   animation-timing-function: cubic-bezier(0.39, 0.575, 0.565, 1);
   animation-fill-mode: forwards;
@@ -140,7 +231,7 @@ input:is(:-webkit-autofill, :autofill) {
   animation-fill-mode: forwards;
   animation-delay: 1000ms;
   animation-duration: 300ms;
-}
+} */
 
 .bounceIcon:hover .target {
   animation-name: bounce;
@@ -188,11 +279,16 @@ input:is(:-webkit-autofill, :autofill) {
 .parent .slideItem:nth-child(n),
 .parent .slideItem:last-child,
 .parent .rightMoveAnime,
+.parent .rightMoreMoveAnime,
+.parent .leftMoveAnime,
 .parent .reduceAnime,
 .parent .strechAnime,
 .parent .strechAnimeB::before,
 .parent .lineDownComp::before,
-.parent .lineDownCompBase {
+.parent .lineDownCompBase,
+.parent .upMoveAnimeBefore::before,
+.parent .downMoveAnimeAfter::after,
+.parent .downMoveAnime {
   animation-play-state: paused;
 }
 

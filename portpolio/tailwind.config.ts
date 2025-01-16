@@ -9,8 +9,8 @@ const config: Config = {
   theme: {
     extend: {
       screens: {
-        sm: { max: "1279px" },
-        md: { max: "1279px" },
+        sm: { max: "767px" },
+        md: { max: "1279px", min: "768px" },
       },
       colors: {
         text: "var(--color)",
@@ -26,7 +26,13 @@ const config: Config = {
         center: true,
       },
       cursor: {
-        custom_test: "url(/cursor.svg), default",
+        custom_dark_upX: "url(/cursors/cursor_dark_upX.svg), default",
+        custom_dark: "url(/cursors/cursor_dark.svg), default",
+        custom_dark_downX: "url(/cursors/cursor_dark_downX.svg), default",
+
+        custom_upX: "url(/cursors/cursor_upX.svg), default",
+        custom: "url(/cursors/cursor.svg), default",
+        custom_downX: "url(/cursors/cursor_downX.svg), default",
       },
     },
   },
