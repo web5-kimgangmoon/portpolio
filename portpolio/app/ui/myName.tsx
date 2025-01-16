@@ -3,7 +3,12 @@ import { motion } from "framer-motion";
 export const MyName = ({ isFocus }: { isFocus: boolean }) => {
   return (
     isFocus && (
-      <svg strokeWidth={0.5} viewBox="0 0 30 10" fill="none" stroke="black">
+      <svg
+        strokeWidth={0.5}
+        viewBox="0 0 30 10"
+        fill="none"
+        stroke={"currentColor"}
+      >
         <motion.path
           initial={{ pathLength: 0 }}
           animate={isFocus && { pathLength: 1 }}
@@ -32,7 +37,6 @@ export const MyName = ({ isFocus }: { isFocus: boolean }) => {
             delay: 0.4,
           }}
           d="M1.25 5.5 C 1.25 5.5, 1.25 5, 1.75 5 H3.75 C 3.75 5, 4.25 5, 4.25 5.5 V 6.25 C 4.25 6.25, 4.25 6.75, 3.75 6.75 H1.75 C 1.75 6.75, 1.25 6.75, 1.25 6.25 V5.5"
-          stroke={"currentColor"}
         ></motion.path>
         <motion.path
           d="M5.5 0.5 H7.5 C 7.5 0.5, 8.5 0.5, 6.5 3.5"

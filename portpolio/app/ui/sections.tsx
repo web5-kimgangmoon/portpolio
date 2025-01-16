@@ -5,7 +5,7 @@ import clsx from "clsx";
 import Image from "next/image";
 import { ReactNode, RefObject, useCallback, useEffect, useState } from "react";
 import z from "zod";
-import { MyName } from "../../public/myName";
+import { MyName } from "./myName";
 
 export const SectionTitle = ({
   reference,
@@ -54,7 +54,7 @@ export const SectionTitle = ({
               style={{ animationDelay: "450ms" }}
               onClick={() => setIsFocusName(!isFocusName)}
             >
-              <div className="pl-2 xl:w-[27.5rem] md:w-[27.5rem] sm:w-[14rem]">
+              <div className="pl-2 xl:w-[27.5rem] md:w-[27.5rem] sm:w-[14rem] text-text">
                 <MyName isFocus={isFocusName} />
               </div>
               <h1 className={`${isFocusName ? "hidden" : "inline"}`}>김강문</h1>
