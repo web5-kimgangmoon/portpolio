@@ -2,7 +2,7 @@
   "name": "portpolio",
   "version": "0.1.0",
   "private": true,
-  "baseurl": "/portpolio",
+  "homepage": "/portpolio",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
