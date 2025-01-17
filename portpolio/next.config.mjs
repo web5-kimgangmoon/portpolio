@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   basePath: "/portpolio",
-  assetPrefix: "/portpolio",
+  assetPrefix: "https://portfolio.clashcrash.com/portpolio",
   output: "export",
   images: {
     unoptimized: true,
