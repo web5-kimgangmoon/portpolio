@@ -23,25 +23,13 @@
 const nextConfig = {
   basePath: "/portpolio",
   output: "export",
-  assetPrefix: "https://web5-kimgangmoon.github.io/portpolio/",
+  assetPrefix: "https://portfolio.clashcrash.com/",
   images: {
     unoptimized: true,
-    path: "https://web5-kimgangmoon.github.io/portpolio/",
+    path: "https://portfolio.clashcrash.com/",
   },
   trailingSlash: true,
   crossOrigin: "anonymous",
-  async headers() {
-    return [
-      {
-        headers: [
-          {
-            key: "Access-Control-Allow-Origin",
-            value: "https://portfolio.clashcrash.com",
-          },
-        ],
-      },
-    ];
-  },
 };
 
 export default nextConfig;
