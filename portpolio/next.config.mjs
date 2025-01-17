@@ -29,7 +29,7 @@ const nextConfig = {
     path: "https://web5-kimgangmoon.github.io/portpolio/",
   },
   trailingSlash: true,
-  crossOrigin: "anymous",
+  crossOrigin: "anonymous",
 };
 
 export default nextConfig;
