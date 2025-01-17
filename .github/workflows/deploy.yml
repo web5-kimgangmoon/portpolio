@@ -17,7 +17,6 @@ jobs:
         run: npm i
 
       - name: Build portpolio
-        working-directory: ./portpolio
         run: npm run build
 
       - name: Deploy
