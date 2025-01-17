@@ -1,5 +1,5 @@
-import { withPlugins } from "next-compose-plugins";
-import { withImages } from "next-images";
+import withPlugins from "next-compose-plugins";
+import withImages from "next-images";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = withPlugins([
