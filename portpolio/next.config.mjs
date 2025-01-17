@@ -26,7 +26,6 @@ const nextConfig = {
   assetPrefix: "/portpolio/",
   images: {
     unoptimized: true,
-    assetPrefix: "/portpolio/",
   },
   trailingSlash: true,
 };
