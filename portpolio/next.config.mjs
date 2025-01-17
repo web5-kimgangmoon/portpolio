@@ -21,11 +21,12 @@
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  basePath: "https://web5-kimgangmoon.github.io/portpolio",
+  basePath: "/portpolio",
   output: "export",
   assetPrefix: "https://web5-kimgangmoon.github.io/portpolio/",
   images: {
     unoptimized: true,
+    path: "https://web5-kimgangmoon.github.io/portpolio/",
   },
   trailingSlash: true,
 };
