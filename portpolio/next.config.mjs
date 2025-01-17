@@ -30,6 +30,18 @@ const nextConfig = {
   },
   trailingSlash: true,
   crossOrigin: "anonymous",
+  async headers() {
+    return [
+      {
+        headers: [
+          {
+            key: "Access-Control-Allow-Origin",
+            value: "https://portfolio.clashcrash.com",
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;
