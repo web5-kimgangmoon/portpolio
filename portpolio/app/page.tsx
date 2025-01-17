@@ -336,23 +336,23 @@ export default function Page() {
                         )}
                       >
                         <StackImg
-                          src="/stacks/aws.png"
+                          src="stacks/aws.png"
                           isStarting={playAnimeNum === 1}
                         />
                         <StackImg
-                          src="/stacks/github.png"
+                          src="stacks/github.png"
                           isStarting={playAnimeNum === 1}
                         />
                         <StackImg
-                          src="/stacks/js.png"
+                          src="stacks/js.png"
                           isStarting={playAnimeNum === 1}
                         />
                         <StackImg
-                          src="/stacks/mysql.png"
+                          src="stacks/mysql.png"
                           isStarting={playAnimeNum === 1}
                         />
                         <StackImg
-                          src="/stacks/nodejs.png"
+                          src="stacks/nodejs.png"
                           isStarting={playAnimeNum === 1}
                         />
                       </div>
