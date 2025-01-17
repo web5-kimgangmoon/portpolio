@@ -29,6 +29,7 @@ const nextConfig = {
     path: "https://web5-kimgangmoon.github.io/portpolio/",
   },
   trailingSlash: true,
+  crossOrigin: ["https://portfolio.clashcrash.com"],
 };
 
 export default nextConfig;
