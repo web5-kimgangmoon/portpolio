@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
-        <meta property="og:image" content="/project.png" />
+        <meta property="og:image" content="project.png" />
         <meta property="og:title" content="portpolio" />
         <meta
           property="og:description"
