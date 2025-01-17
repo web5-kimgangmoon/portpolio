@@ -364,23 +364,23 @@ export default function Page() {
                         // style={{ animationDelay: "1350ms" }}
                       >
                         <StackImg
-                          src="/stacks/npm.png"
+                          src="stacks/npm.png"
                           isStarting={playAnimeNum === 1}
                         />
                         <StackImg
-                          src="/stacks/reactjs.png"
+                          src="stacks/reactjs.png"
                           isStarting={playAnimeNum === 1}
                         />
                         <StackImg
-                          src="/stacks/tailwindcss.png"
+                          src="stacks/tailwindcss.png"
                           isStarting={playAnimeNum === 1}
                         />
                         <StackImg
-                          src="/stacks/typescript.png"
+                          src="stacks/typescript.png"
                           isStarting={playAnimeNum === 1}
                         />
                         <StackImg
-                          src="/stacks/vscode.png"
+                          src="stacks/vscode.png"
                           isStarting={playAnimeNum === 1}
                         />
                       </div>
@@ -488,7 +488,7 @@ export default function Page() {
                   <div className="">
                     <div className="w-32 h-64">
                       <Image
-                        src={"/project.png"}
+                        src={"project.png"}
                         alt="no image"
                         width={120}
                         height={120}

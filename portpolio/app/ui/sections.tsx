@@ -38,7 +38,7 @@ export const SectionTitle = ({
             >
               <div className="w-40 h-40">
                 <Image
-                  src={"/face.png"}
+                  src={"face.png"}
                   width={"120"}
                   height={"120"}
                   alt="no image"
