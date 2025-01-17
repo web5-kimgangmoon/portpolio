@@ -12,7 +12,7 @@
 # next.js
 /.next/
 # git deploy
-/out/
+# /out/
 
 # production
 /build
