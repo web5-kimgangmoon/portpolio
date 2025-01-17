@@ -1,41 +1,28 @@
-# name: Deploy Project
+name: Deploy Project
 
-# on:
-#   push:
-#     branches:
-#       - main
+on:
+  push:
+    branches:
+      - main
 
-# jobs:
-#   deploy_portpolio:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: checkout repository
-#         uses: actions/checkout@v4
+jobs:
+  deploy_portpolio:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v4
 
-#       - name: Add SSH key
-#         uses: webfactory/ssh-agent@v0.5.4
-#         with:
-#           ssh-private-key: ${{ secrets.EC2_KEY }}
+      - name: Install Dependencies of portpolio
+        working-directory: ./portpolio
+        run: npm i
 
-#       - name: Ensure SSH directory exists
-#         run: |
-#           mkdir -p ~/.ssh
-#           chmod 700 ~/.ssh
+      - name: Build portpolio
+        working-directory: ./portpolio
+        run: npm run build
 
-#       - name: Add SSH known hosts
-#         run: ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
-
-#       - name: Install Dependencies of portpolio
-#         working-directory: ./portpolio
-#         run: npm i
-
-#       - name: Build portpolio
-#         working-directory: ./portpolio
-#         run: npm run build
-
-#       - name: Copy Files to EC2
-#         run: |
-#           ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} '
-#             rm -rf /var/www/portpolio
-#             mkdir /var/www/portpolio'
-#           rsync -avz -e "ssh" ./portpolio/out/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/portpolio
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        working-directory: ./portpolio
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
