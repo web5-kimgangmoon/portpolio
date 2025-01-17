@@ -13,9 +13,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install Dependencies of portpolio
+        working-directory: ./portpolio
         run: npm i
 
       - name: Build portpolio
+        working-directory: ./portpolio
         run: npm run build
 
       - name: Deploy
