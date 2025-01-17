@@ -3,7 +3,7 @@ name: Deploy Project
 on:
   push:
     branches:
-      - main
+      - deploy_git
 
 jobs:
   deploy_portpolio:
