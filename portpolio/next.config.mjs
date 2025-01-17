@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  basePath: "portpolio",
+  basePath: "/portpolio",
   output: "export",
   images: {
     unoptimized: true,
