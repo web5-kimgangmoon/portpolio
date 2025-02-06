@@ -336,23 +336,23 @@ export default function Page() {
                         )}
                       >
                         <StackImg
-                          src="/stacks/aws.png"
+                          src="stacks/aws.png"
                           isStarting={playAnimeNum === 1}
                         />
                         <StackImg
-                          src="/stacks/github.png"
+                          src="stacks/github.png"
                           isStarting={playAnimeNum === 1}
                         />
                         <StackImg
-                          src="/stacks/js.png"
+                          src="stacks/js.png"
                           isStarting={playAnimeNum === 1}
                         />
                         <StackImg
-                          src="/stacks/mysql.png"
+                          src="stacks/mysql.png"
                           isStarting={playAnimeNum === 1}
                         />
                         <StackImg
-                          src="/stacks/nodejs.png"
+                          src="stacks/nodejs.png"
                           isStarting={playAnimeNum === 1}
                         />
                       </div>
@@ -364,23 +364,23 @@ export default function Page() {
                         // style={{ animationDelay: "1350ms" }}
                       >
                         <StackImg
-                          src="/stacks/npm.png"
+                          src="stacks/npm.png"
                           isStarting={playAnimeNum === 1}
                         />
                         <StackImg
-                          src="/stacks/reactjs.png"
+                          src="stacks/reactjs.png"
                           isStarting={playAnimeNum === 1}
                         />
                         <StackImg
-                          src="/stacks/tailwindcss.png"
+                          src="stacks/tailwindcss.png"
                           isStarting={playAnimeNum === 1}
                         />
                         <StackImg
-                          src="/stacks/typescript.png"
+                          src="stacks/typescript.png"
                           isStarting={playAnimeNum === 1}
                         />
                         <StackImg
-                          src="/stacks/vscode.png"
+                          src="stacks/vscode.png"
                           isStarting={playAnimeNum === 1}
                         />
                       </div>
@@ -456,19 +456,19 @@ export default function Page() {
             >
               <div className="text-xl rightMoveAnime flex flex-wrap">
                 <Skill
-                  title="react"
+                  title="REACT"
                   description="useMemo, useCallback, useState, useContext로 커스텀 훅을 코딩해보고, useEffect를 활용해 componentDidMount와 componenetDidUpdate 주기에 따라 리렌더링 시켜봤습니다."
                 />
                 <Skill
-                  title="tailwind"
+                  title="TAILWIND"
                   description="tailwind의 document에서 검색해보며 커스텀 클래스를 만들어보고 오직 tailwind 클래스만으로 css를 구성해봤습니다."
                 />
                 <Skill
-                  title="clsx"
+                  title="CLSX"
                   description="clsx 라이브러리로 요소들의 클래스들을 객체와 논리연산자를 활용하여 자유롭게 제어할 수 있습니다"
                 />
                 <Skill
-                  title="ts"
+                  title="TS"
                   description="복합타입을 사용하여 타입을 자유롭게 지정하고 값들을 활용할 수 있습니다."
                 />
               </div>
@@ -483,55 +483,26 @@ export default function Page() {
               // slider={slider}
               // nextIdx={5}
             >
-              <div className="rightMoveAnime">
-                <div className="max-w-max opacity_hover group">
-                  <div className="">
-                    <div className="w-32 h-64">
-                      <Image
-                        src={"/project.png"}
-                        alt="no image"
-                        width={120}
-                        height={120}
-                        className="w-full h-full  opacity-50 transition-opacity target group-hover:translate-y-[-10px] transition-transform"
-                      />
-                    </div>
-                    <div className="text-3xl font-bold">The board</div>
-                    <div className="text-xl text-color50">
-                      <button
-                        className="hover:text-text hover:font-bold hover:underline"
-                        onClick={() => {
-                          window.open(
-                            "https://deploy.clashcrash.com",
-                            "project",
-                            "fullscreen=yes"
-                          );
-                        }}
-                      >
-                        게시판
-                      </button>
-                    </div>
-
-                    <div className="text-xl text-color50">
-                      <button
-                        className="hover:text-text hover:font-bold hover:underline"
-                        onClick={() => {
-                          window.open(
-                            "https://github.com/web5-kimgangmoon/nextJS_PersonalProject",
-                            "gitPage",
-                            "fullscreen=yes"
-                          );
-                        }}
-                      >
-                        git
-                      </button>
-                    </div>
-                    <div className="py-6 text-sm flex gap-2">
-                      FRONTEND
-                      <div className="w-3 pt-[0.625rem] before:border-t before:border-text before:w-full before:block"></div>
-                      BACKEND
-                    </div>
-                  </div>
-                </div>
+              <div className="rightMoveAnime flex gap-20 flex-wrap">
+                <ProjectInstance
+                  projectImg="project.png"
+                  projectName="person"
+                  projectPath="https://personalproject1.clashcrash.com"
+                  gitPath="https://github.com/web5-kimgangmoon/nextJS_PersonalProject"
+                  isBack={true}
+                />
+                <ProjectInstance
+                  projectImg="team1.png"
+                  projectName="team1"
+                  projectPath="https://teamproject1.clashcrash.com"
+                  gitPath="https://github.com/web5-kimgangmoon/team_wansungmun"
+                />
+                <ProjectInstance
+                  projectImg="team2.png"
+                  projectName="team2"
+                  projectPath="https://teamproject2.clashcrash.com"
+                  gitPath="https://github.com/web5-kimgangmoon/teamproject_cloneCoding-Kim-Lee-Son-"
+                />
               </div>
             </Section>
             <SectionEmail
@@ -613,6 +584,65 @@ const StackImg = ({
         transition={{ delay: 1.3 }}
         className="absolute left-[calc(50%-20px)] top-[calc(50%-20px)]"
       />
+    </div>
+  );
+};
+
+const ProjectInstance = ({
+  projectImg,
+  projectName,
+  projectPath,
+  gitPath,
+  isBack,
+}: {
+  projectImg: string;
+  projectName: string;
+  projectPath: string;
+  gitPath: string;
+  isBack?: boolean;
+}) => {
+  return (
+    <div className="max-w-max opacity_hover group">
+      <div className="">
+        <div className="w-32 h-64">
+          <Image
+            src={projectImg}
+            alt="no image"
+            width={120}
+            height={120}
+            className="w-full h-full  opacity-50 transition-opacity target group-hover:translate-y-[-10px] transition-transform"
+          />
+        </div>
+        <div className="text-3xl font-bold">{projectName}</div>
+        <div className="text-xl text-color50">
+          <button
+            className="hover:text-text hover:font-bold hover:underline"
+            onClick={() => {
+              window.open(projectPath, projectName, "fullscreen=yes");
+            }}
+          >
+            링크
+          </button>
+        </div>
+
+        <div className="text-xl text-color50">
+          <button
+            className="hover:text-text hover:font-bold hover:underline"
+            onClick={() => {
+              window.open(gitPath, `${projectName}_gitPage`, "fullscreen=yes");
+            }}
+          >
+            git
+          </button>
+        </div>
+        <div className="py-6 text-sm flex gap-2">
+          FRONTEND
+          {isBack && (
+            <div className="w-3 pt-[0.625rem] before:border-t before:border-text before:w-full before:block"></div>
+          )}
+          {isBack && "BACKEND"}
+        </div>
+      </div>
     </div>
   );
 };
