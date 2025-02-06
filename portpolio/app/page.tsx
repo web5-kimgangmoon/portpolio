@@ -588,7 +588,7 @@ const StackImg = ({
   );
 };
 
-export const ProjectInstance = ({
+const ProjectInstance = ({
   projectImg,
   projectName,
   projectPath,
