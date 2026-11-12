@@ -52,8 +52,8 @@ export default function Page() {
       section5,
       section6,
     ]) {
-      refsNum.push((item.current!.clientHeight / 1.5 + heightSum) as number);
-      heightSum += item.current!.clientHeight;
+      refsNum.push((item.current!.clientHeight / 1.5 + heightSum) as number); // 전체 높이 + 2/3 해당 섹션에 도달할 경우를 기준으로 한다.
+      heightSum += item.current!.clientHeight; // 전체 높이. 각 섹션을 더한다.
     }
     const indexFunction = selectIndex(refsNum);
     if (window.innerWidth < 1280)
@@ -175,7 +175,7 @@ export default function Page() {
           "cursor-custom": color !== "black",
           "cursor-custom_upX": color !== "black" && playAnimeNum === 0,
           "cursor-custom_downX": color !== "black" && playAnimeNum === 5,
-        }
+        },
       )}
     >
       <TopBar
@@ -201,7 +201,7 @@ export default function Page() {
             "transition-transform duration-300",
             isNavOpen
               ? "translate-x-[-150%] xl:translate-x-0 ease-in"
-              : "ease-out"
+              : "ease-out",
           )}
         >
           <div
@@ -209,7 +209,7 @@ export default function Page() {
               "w-full h-full",
               "xl:flex xl:absolute xl:top-0 xl:left-0",
               "sm:!translate-x-0 md:!translate-x-0",
-              "transition-transform duration-300"
+              "transition-transform duration-300",
             )}
             id={sliderId}
             ref={slider}
@@ -332,7 +332,7 @@ export default function Page() {
                     <div className="flex flex-col gap-2">
                       <div
                         className={clsx(
-                          "flex flex-wrap gap-2  xl:justify-end justify-center"
+                          "flex flex-wrap gap-2  xl:justify-end justify-center",
                         )}
                       >
                         <StackImg
@@ -358,7 +358,7 @@ export default function Page() {
                       </div>
                       <div
                         className={clsx(
-                          "flex flex-wrap gap-2 xl:justify-end justify-center"
+                          "flex flex-wrap gap-2 xl:justify-end justify-center",
                           // "leftMoveAnime translate-x-full"
                         )}
                         // style={{ animationDelay: "1350ms" }}
@@ -403,7 +403,7 @@ export default function Page() {
               <div className="flex">
                 <div
                   className={clsx(
-                    "text-xl lineDownComp relative mx-2 overflow-x-hidden"
+                    "text-xl lineDownComp relative mx-2 overflow-x-hidden",
                   )}
                 >
                   <div className="top-0 left-0 h-0 absolute lineDownCompBase flex flex-col justify-end items-center">
@@ -425,7 +425,7 @@ export default function Page() {
                 </div>
                 <div
                   className={clsx(
-                    "text-xl lineDownComp relative mx-2 overflow-x-hidden flex flex-col justify-center"
+                    "text-xl lineDownComp relative mx-2 overflow-x-hidden flex flex-col justify-center",
                   )}
                 >
                   <div className="top-0 left-0 h-0 absolute lineDownCompBase flex flex-col justify-end items-center">
