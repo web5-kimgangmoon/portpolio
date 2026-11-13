@@ -39,7 +39,7 @@ export default function Page() {
   // const [isSend, setIsSend] = useState<boolean>(false);
 
   useEffect(() => {
-    setIsMoblie(window.matchMedia("(any-pointer:coarse)").matches);
+    setIsMoblie(window.matchMedia("(any-pointer:coarse)").matches); // 모바일 환경인지 메타데이터로 확인한다.
   }, []);
   useEffect(() => {
     let heightSum = 0;
@@ -55,16 +55,16 @@ export default function Page() {
       refsNum.push((item.current!.clientHeight / 1.5 + heightSum) as number); // 전체 높이 + 2/3 해당 섹션에 도달할 경우를 기준으로 한다.
       heightSum += item.current!.clientHeight; // 전체 높이. 각 섹션을 더한다.
     }
-    const indexFunction = selectIndex(refsNum);
+    const indexFunction = selectIndex(refsNum); // 각 섹션의 높이의 2/3+Section에 도달하는데 필요한 높이의 합이 refs 배열에 저장되어 있고, 그 값을 기준으로 indexFunction을 생성한다.
     if (window.innerWidth < 1280)
-      setPlayAnimeNum(indexFunction(window.scrollY));
+      setPlayAnimeNum(indexFunction(window.scrollY)); // 1280px 미만(데스크탑이 아닌 환경 상정)의 환경에서 애니메이션을 작동시킨다. 위는 초기의 스크롤 값을 기준으로 삼는다.
     // const handleThrottle = throttle(() => {
     //   setPlayAnimeNum(indexFunction(window.scrollY));
     // }, 300);
     // window.addEventListener("scroll", handleThrottle);
     window.addEventListener("scroll", () => {
       if (window.innerWidth < 1280)
-        setPlayAnimeNum(indexFunction(window.scrollY));
+        setPlayAnimeNum(indexFunction(window.scrollY)); // 1280px 미만(데스크탑이 아닌 환경 상정)의 환경에서 애니메이션을 작동시킨다. 위는 스크롤 될 때마다 작동한다.
     });
   }, [innerHeight]);
   useEffect(() => {
