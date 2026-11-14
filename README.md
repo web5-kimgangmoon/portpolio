@@ -29,3 +29,7 @@ h: 상대 X 좌표로 수평 선 그리기. 예를 들어, h 50은 현재 X좌�
 ### 11/13
 
 1. selectIndex.tsx와 page.tsx 초반부. 셀프 코드 리뷰.
+
+### 11/14
+
+1. sectionCheck.tsx와 page.tsx 일부. 셀프 코드 리뷰.

@@ -71,16 +71,25 @@ export default function Page() {
     if (isMobile !== undefined && !isMobile)
       window.addEventListener("resize", () => {
         if (window.innerWidth < 1280) {
-          window.onwheel = null;
-          sectionCheck(section1, playAnimeNum, 0);
+          window.onwheel = null; // 데스크탑 환경이 아닐 것으로 여겨, onwheel 이벤트 리스너를 제거했다.
+          sectionCheck(section1, playAnimeNum, 0); // 슬라이드를 위한 체크. 예전에 짠 코드지만 비효율적이다. 리팩토링할시, [section1, section2...]와 playAnimeNum을 매개변수로 넘기고 배열의 index를 기준으로 스크롤하도록 수정할것이다.
           sectionCheck(section2, playAnimeNum, 1);
           sectionCheck(section3, playAnimeNum, 2);
           sectionCheck(section4, playAnimeNum, 3);
           sectionCheck(section5, playAnimeNum, 4);
           sectionCheck(section6, playAnimeNum, 5);
+          // 리팩토링시 이렇게 수정해볼 예정.
+          // const sectionArr = [section1, section2, section3, section4, section5, section6];
+          // if (sectionArr[playAnimeNum].current)
+          // sectionArr[playAnimeNum].current.scrollIntoView({
+          // block: "start",
+          // behavior: "smooth",
+          // inline: "start",
+          // });
         } else
+          // 1280px 이상인 데스크탑 환경.
           window.onwheel = (e) => {
-            if (!slider.current) return;
+            if (!slider.current) return; // slider.current가 없으면, 종료.
             if (slider.current.style.transform) {
               // const slideX = +slider.current.style.transform
               //   .split("translateX(")[1]
@@ -90,6 +99,7 @@ export default function Page() {
               // slider.current.style.transform = `translateX(${slideX - 100}%)`;
               // setPlayAnimeNum(-slideX / 100 + 1);
               if (e.deltaY > 0 && playAnimeNum < 5) {
+                // slider.current.style.transform이 있고, deltaY>0 즉, 스크롤을 아래로 내린다. 그리고 playAnimeNum이 5보다 작다면, 아래 섹션으로 진행.
                 // slider.current.style.transform = `translateX(${
                 //   -playAnimeNum * 100 - 100
                 // }%)`;
@@ -100,6 +110,7 @@ export default function Page() {
 
               // setPlayAnimeNum(-slideX / 100 - 1);
               if (e.deltaY < 0 && playAnimeNum > 0) {
+                // slider.current.style.transform이 있고, deltaY<0 즉, 스크롤을 위로 올린다. 그리고 playAnimeNum이 0보다 크다면, 위 섹션으로 진행.
                 // slider.current.style.transform = `translateX(${
                 //   -playAnimeNum * 100 + 100
                 // }%)`;
@@ -109,11 +120,13 @@ export default function Page() {
           };
         if (window.innerHeight !== innerHeight)
           setInnerHeight(window.innerHeight);
+        // window.innerHeight와 innerHeight가 다르면, 변경.
       });
   }, [playAnimeNum, isMobile]);
   // 추가했습니다
   useEffect(() => {
-    if (window.innerWidth < 1280) window.onwheel = null;
+    if (window.innerWidth < 1280)
+      window.onwheel = null; // innerwidth로 데스크탑 환경 체크.
     else
       window.onwheel = (e) => {
         if (!slider.current) return;
