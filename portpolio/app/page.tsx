@@ -110,7 +110,7 @@ export default function Page() {
 
               // setPlayAnimeNum(-slideX / 100 - 1);
               if (e.deltaY < 0 && playAnimeNum > 0) {
-                // slider.current.style.transform이 있고, deltaY<0 즉, 스크롤을 위로 올린다. 그리고 playAnimeNum이 0보다 크다면, 위 섹션으로 진행.
+                // slider.current.style.transform이 있고, deltaY<0 즉, 스크롤을 위로 올린다. 그리고 playAnimeNum이 0보다 크다면, 상단 섹션 애니메이션 실행.
                 // slider.current.style.transform = `translateX(${
                 //   -playAnimeNum * 100 + 100
                 // }%)`;
@@ -142,7 +142,7 @@ export default function Page() {
             // slider.current.style.transform = `translateX(${
             //   -playAnimeNum * 100 - 100
             // }%)`;
-            setPlayAnimeNum(playAnimeNum + 1);
+            setPlayAnimeNum(playAnimeNum + 1); // deltaY < 0이므로, 스크롤을 위로 올릴 경우를 가정한 함수실행이다. 하단 섹션의 애니메이션을 실행한다.
           }
           // if (e.deltaY < 0 && slideIDX < 0) {
           // slider.current.style.transform = `translateX(${slideX + 100}%)`;
@@ -152,7 +152,7 @@ export default function Page() {
             // slider.current.style.transform = `translateX(${
             //   -playAnimeNum * 100 + 100
             // }%)`;
-            setPlayAnimeNum(playAnimeNum - 1);
+            setPlayAnimeNum(playAnimeNum - 1); // deltaY > 0이므로, 스크롤을 아래로 내릴 경우를 가정한 함수실행이다. 상단 섹션의 애니메이션을 실행한다.
           }
         }
       };
@@ -168,10 +168,12 @@ export default function Page() {
       // sectionCheck(section6, playAnimeNum, 5);
       // }
       if (!(window.innerWidth < 1280))
+        // 데스크톱 환경이 아닌 경우.
         slider.current.style.transform =
           slider.current.style.transform = `translateX(${
             -playAnimeNum * 100
           }%)`;
+      // 뷰포트가 100%인 초기 설정. 아마 굳이 따로 둔 이유는 모듈화를 위함인듯하다. 각각의 useEffect에 담아둘 경우, 복잡성은 줄일 수 있다. 그러나 매번 새롭게 화면 슬라이드를 공통적으로 처리해줘야만 한다.
     }
   }, [playAnimeNum]);
 
@@ -180,6 +182,7 @@ export default function Page() {
       className={clsx(
         `body ${color} box-border px-2 select-none`,
         {
+          // globals.css나 다른 폴더를 뒤져도 없기에, Kilo Code 확장프로그램의 ai 에이전트에게 해당 속성 클래스가 어디있는가 물어봤다. 결과, tailwind.config.ts에 값이 저장되어 있었다. tailwind v4 이후로 tailwind.config.ts가 필수 설정 파일에서 제외되었으나, 해당 포트폴리오는 v3 때 작성되어 css를 커스텀할 경우 tailwind.config.ts를 경유한 흔적이 그대로 남아있다.
           "cursor-custom_dark": color === "black",
           "cursor-custom_dark_upX": color === "black" && playAnimeNum === 0,
           "cursor-custom_dark_downX": color === "black" && playAnimeNum === 5,
