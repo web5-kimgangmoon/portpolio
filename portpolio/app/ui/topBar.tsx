@@ -58,6 +58,10 @@ export const TopBar = ({
   );
 };
 
+// 각 colorbox 안에 마우스가 들어갈 때마다 ()=> setShowNum(컬러명) 실행되고, 나올 때마다 ()=>setShowNum(undefined)가 실행된다.
+// inner는 black일 경우에 한정하여, 하얀색 사각형이다.
+// outer은 각 색상설정에 걸맞는 색상이다.
+// setColor가 실행되면, 각 색상에 맞는 색상이 설정된다.
 export const ColorBox = ({
   setColor,
   setShowNum,

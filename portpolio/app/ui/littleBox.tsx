@@ -22,3 +22,5 @@ export const LittleBox = ({ isShown }: { isShown: boolean }) => {
     </div>
   );
 };
+
+// text-background는 CSS 변수 background를 사용하며, black, yellow 등 global.css에 정의된 클래스에 따라 background의 색상이 달라진다.

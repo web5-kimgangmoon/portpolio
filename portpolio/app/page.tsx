@@ -186,11 +186,13 @@ export default function Page() {
           "cursor-custom_dark": color === "black",
           "cursor-custom_dark_upX": color === "black" && playAnimeNum === 0,
           "cursor-custom_dark_downX": color === "black" && playAnimeNum === 5,
+          // color가 black이면, cursor의 svg를 Dark 버전으로 각 상황에 맞는 클래스로 변경.
         },
         {
           "cursor-custom": color !== "black",
           "cursor-custom_upX": color !== "black" && playAnimeNum === 0,
           "cursor-custom_downX": color !== "black" && playAnimeNum === 5,
+          // color가 black이 아닐 경우, cursor의 svg를 각 상황에 맞는 클래스로 변경.
         },
       )}
     >
@@ -199,10 +201,10 @@ export default function Page() {
         setIsNavOpen={() =>
           setIsNavOpen((value) => {
             return !value;
+            // 색상 관련 훅과 nav 요소 관련 훅의 setter를 넘긴다.
           })
         }
       />
-
       <div className={clsx("container flex flex-row-reverse")}>
         <RightMenu
           select={playAnimeNum}
