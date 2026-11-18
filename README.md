@@ -41,3 +41,7 @@ h: 상대 X 좌표로 수평 선 그리기. 예를 들어, h 50은 현재 X좌�
 ### 11/17
 
 1. topBar.tsx 일부. 셀프 코드 리뷰.
+
+### 11/18
+
+1. page.tsx 일부. topBar.tsx 일부. rightMenu 일부. scrollEvControll. 셀프 코드 리뷰.

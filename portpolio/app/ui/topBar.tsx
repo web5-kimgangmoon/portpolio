@@ -57,6 +57,7 @@ export const TopBar = ({
     </div>
   );
 };
+// setIsNavOpen을 통해 Nav를 열고 닫는다.
 
 // 각 colorbox 안에 마우스가 들어갈 때마다 ()=> setShowNum(컬러명) 실행되고, 나올 때마다 ()=>setShowNum(undefined)가 실행된다.
 // inner는 black일 경우에 한정하여, 하얀색 사각형이다.

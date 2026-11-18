@@ -3,6 +3,7 @@ import clsx from "clsx";
 import { scrollEvControll } from "../lib/scrollEvControll";
 import setScrollingAnimeCnt from "../lib/setScrollingAnimeCnt";
 
+// isNavOpen으로 위치변경 (토글 기능).
 export const RightMenu = ({
   refs,
   slider,
@@ -22,7 +23,7 @@ export const RightMenu = ({
       className={clsx(
         "xl:sticky fixed top-[60px] right-0 overflow-hidden px-10 h-max transition-transform xl:w-[30rem] bg-background xl:translate-x-0",
         !isNavOpen && "translate-x-[300%]",
-        isNavOpen && "translate-x-0"
+        isNavOpen && "translate-x-0",
       )}
     >
       <RightMenuComp
@@ -65,8 +66,10 @@ export const RightMenuComp = ({
       // }
       // const indexFunction = selectIndex(refsNum);
       // setSelect(indexFunction(window.scrollY));
-      scrollEvControll(true);
+      scrollEvControll(true); // 스크롤 이벤트를 추가한다.
       if (all.current) all.current.classList.remove("parent");
+      // all.current가 존재할 경우, parent 클래스 추가.
+
       // window.onscroll = () => {
       //   setSelect(indexFunction(window.scrollY));
       // };
@@ -74,22 +77,23 @@ export const RightMenuComp = ({
       //   if (window.innerHeight !== innerHeight)
       //     setInnerHeight(window.innerHeight);
       // };
-      scrollEvControll(false);
+      scrollEvControll(false); // 스크롤 이벤트를 닫는다.
     },
     [
       // innerHeight,
       // refs, setSelect
-    ]
+    ],
   );
   useEffect(() => {
     setSelectBar(select);
+    // select가 변할 때마다, setSelectBar가 실행된다.
   }, [select]);
   return (
     <div className={clsx("parent")} ref={all}>
       <div
         className={clsx(
           "relative lineDown",
-          "before:top-0 before:left-0 before:w-[2px] xl:before:h-0 before:h-full before:content-[''] before:border-l-2 before:border-color20 before:absolute"
+          "before:top-0 before:left-0 before:w-[2px] xl:before:h-0 before:h-full before:content-[''] before:border-l-2 before:border-color20 before:absolute",
         )}
       >
         <nav className="text-xl font-bold">
@@ -106,7 +110,7 @@ export const RightMenuComp = ({
               slider,
               setIsSliding,
               isSliding,
-              0
+              0,
             )}
 
             // setSelect={setScrollingAnimeCnt(
@@ -132,7 +136,7 @@ export const RightMenuComp = ({
               slider,
               setIsSliding,
               isSliding,
-              1
+              1,
             )}
             // setSelect={setScrollingAnimeCnt(
             //   select,
@@ -156,7 +160,7 @@ export const RightMenuComp = ({
               slider,
               setIsSliding,
               isSliding,
-              2
+              2,
             )}
             // setSelect={setScrollingAnimeCnt(
             //   select,
@@ -180,7 +184,7 @@ export const RightMenuComp = ({
               slider,
               setIsSliding,
               isSliding,
-              3
+              3,
             )}
             // setSelect={setScrollingAnimeCnt(
             //   select,
@@ -204,7 +208,7 @@ export const RightMenuComp = ({
               slider,
               setIsSliding,
               isSliding,
-              4
+              4,
             )}
             // setSelect={setScrollingAnimeCnt(
             //   select,
@@ -228,7 +232,7 @@ export const RightMenuComp = ({
               slider,
               setIsSliding,
               isSliding,
-              5
+              5,
             )}
             // setSelect={setScrollingAnimeCnt(
             //   select,
@@ -265,14 +269,16 @@ export const IndexComp = ({
   setSelect: () => void;
   delay?: string;
 }) => {
+  // select or hover 될 경우 텍스트 색깔을 text-color60으로 변경한다.
   return (
     <button
       className={clsx(
         "py-2 px-6 block hover:text-color60 relative xl:translate-x-[300%] slideItem",
-        isSelect && "text-color60"
+        isSelect && "text-color60",
       )}
       style={{ animationDelay: delay }}
       onClick={() => {
+        // target이 존재하고, 화면너비가 1280px 이하일 경우 클릭하면, 요소의 start 지점으로 이동하는 스크롤 이동이 발생한다.
         if (target.current) {
           if (window.innerWidth < 1280)
             target.current.scrollIntoView({
@@ -288,7 +294,8 @@ export const IndexComp = ({
           "absolute w-full h-full flex items-center top-0 left-[0] before:duration-300",
           "hover:before:border-l-2 hover:before:border-text hover:before:h-[100%]",
           !isSelect && "before:h-0",
-          isSelect && "before:border-l-2 before:border-text before:h-[100%]"
+          isSelect && "before:border-l-2 before:border-text before:h-[100%]",
+          // Select 되었는가에 따라, border을 생성하거나 뺀다.
         )}
       ></div>
       <span className="text-base font-light pr-2">{number}</span> {title}
