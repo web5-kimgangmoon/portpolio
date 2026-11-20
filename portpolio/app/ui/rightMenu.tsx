@@ -302,3 +302,4 @@ export const IndexComp = ({
     </button>
   );
 };
+// 숫자와 섹션명이 병기된다.

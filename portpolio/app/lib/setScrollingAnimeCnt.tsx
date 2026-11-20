@@ -8,7 +8,7 @@ const setScrollingAnimeCnt = (
   slider: RefObject<HTMLElement | null>,
   setIsSliding: (is: boolean) => void,
   isSliding: boolean,
-  target: number
+  target: number,
 ) => {
   return () => {
     if (!isSliding) {
@@ -16,12 +16,12 @@ const setScrollingAnimeCnt = (
         setIsSliding(true);
         const minus = setInterval(() => {
           if (selectBar === target) {
-            clearInterval(minus);
-            setSelect(target);
-            if (slider.current) slider.current.style.transition = "";
-            setIsSliding(false);
+            clearInterval(minus); // selectbar를 minus하는 interval 함수 클리어.
+            setSelect(target); // target을 select를 같이 만든다.
+            if (slider.current) slider.current.style.transition = ""; // 슬라이드가 있으면, 슬라이드의 transform을 없앤다.
+            setIsSliding(false); // IsSliding 변수를 false로.
           }
-          setSelectBar(--selectBar);
+          setSelectBar(--selectBar); // selectbar 줄이기
         }, 150);
       }
       if (select < target) {
