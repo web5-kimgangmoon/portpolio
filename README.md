@@ -53,3 +53,7 @@ h: 상대 X 좌표로 수평 선 그리기. 예를 들어, h 50은 현재 X좌�
 ### 11/21
 
 1. setScrollingAnimeCnt.tsx 셀프 코드리뷰.
+
+### 11/22
+
+1. rightMenu.tsx 셀프 코드리뷰.

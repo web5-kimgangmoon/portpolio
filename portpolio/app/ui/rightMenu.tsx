@@ -111,8 +111,7 @@ export const RightMenuComp = ({
               setIsSliding,
               isSliding,
               0,
-            )}
-
+            )} // select값을 애니메이션 이동 중 제어하는 함수
             // setSelect={setScrollingAnimeCnt(
             //   select,
             //   select,
